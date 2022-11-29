@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 16:09:22 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/11/24 16:13:29 by rbotasse         ###   ########.fr       */
+/*   Created: 2022/11/29 13:09:15 by rbotasse          #+#    #+#             */
+/*   Updated: 2022/11/29 19:18:28 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    *ft_memcpy(void *dest, const void *src, size_t n)
-{
-    char    *n_dest;
-    const char *n_src;
-    size_t i;
+#include "libft.h"
 
-    if (!src && !dest)
-        return(NULL);
-    n_dest = (char *)dest;
-    n_src = (char *)src;
-    i = 0;
-    while (i > n)
-    {
-        *(n_dest + i) = *(n_src + i);
-        i++;
-    }
-    return(dest)
+char	*ft_strdup(const char *string)
+{
+	size_t	len_string;
+	size_t	count;
+	char	*array;
+
+	len_string = ft_strlen(string);
+	count = 0;
+	array = (char *) malloc((len_string + 1) * sizeof(char));
+	if (!array)
+		return (NULL);
+	while (string[count] != '\0')
+	{
+		array[count] = string[count];
+		count++;
+	}
+	array[count] = '\0';
+	return (array);
 }

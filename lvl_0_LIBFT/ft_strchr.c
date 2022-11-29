@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 13:09:15 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/11/29 13:09:17 by rbotasse         ###   ########.fr       */
+/*   Created: 2022/11/29 11:35:36 by rbotasse          #+#    #+#             */
+/*   Updated: 2022/11/29 18:46:25 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nitems, size_t size)
+char	*ft_strchr(const char *s, int c)
 {
-	char				*mem_allocated;
-	unsigned int		total;
-	size_t				i;
+	int	count;
 
-	total = nitems * size;
-	mem_allocated = malloc(nitems * size);
-	if (mem_allocated == NULL)
-		return (NULL);
-	i = 0;
-	while (total > 0)
+	count = 0;
+	while (s[count] != '\0')
 	{
-		mem_allocated[i] = 0;
-		total--;
-		i++;
+		if (s[count] == c)
+			return ((char *)s + count);
+		count++;
 	}
-	return ((void *)mem_allocated);
+	if (s[count] == c)
+		return ((char *)s + count);
+	return (0);
 }

@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 15:26:11 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/11/24 15:38:07 by rbotasse         ###   ########.fr       */
+/*   Created: 2022/11/29 11:44:48 by rbotasse          #+#    #+#             */
+/*   Updated: 2022/11/29 19:03:24 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	size_t			i;
-	unsigned char	*ptr;
+	unsigned char	*str1_s;
+	unsigned char	*str2_s;
 
-	i = 0;
-	ptr = (unsigned char *)s;
-	while (i < n)
+	str1_s = (unsigned char *) str1;
+	str2_s = (unsigned char *) str2;
+	while (n > 0)
 	{
-		*ptr = (unsigned char)c;
-		i++;
-		ptr++;
+		if (*str1_s != *str2_s)
+			return (*str1_s - *str2_s);
+		str1_s++;
+		str2_s++;
+		n--;
 	}
-	return (s);
+	return (0);
 }

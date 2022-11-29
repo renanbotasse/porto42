@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 16:26:13 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/11/24 16:31:17 by rbotasse         ###   ########.fr       */
+/*   Created: 2022/11/29 11:47:34 by rbotasse          #+#    #+#             */
+/*   Updated: 2022/11/29 19:08:41 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
+	size_t	i_s2;
+	size_t	len_needle;
 
 	i = 0;
-	if (dstsize == 0)
+	len_needle = ft_strlen(s2);
+	if (n == 0 && !s1)
+		return (0);
+	if (s2[0] == '\0')
+		return ((char *) s1);
+	while (s1[i] != '\0' && i < n)
 	{
-		while (src[i])
-			i++;
-		return (i);
-	}
-	while (i < dstsize - 1 && src[i] != '\0')
-	{
-		dst[i] = src[i];
+		i_s2 = 0;
+		if (s1[i] == s2[0])
+		{
+			while (s1[i + i_s2] == s2[i_s2] && s2[i_s2] != '\0' && i + i_s2 < n)
+			{
+				if (len_needle - 1 == i_s2)
+					return ((char *) s1 + i);
+				i_s2++;
+			}
+		}
 		i++;
 	}
-	if (i < dstsize)
-		dst[i] = '\0';
-	while (src[i] != '\0')
-		i++;
-	return (i);
+	return (0);
 }
