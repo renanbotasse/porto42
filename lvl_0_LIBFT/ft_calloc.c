@@ -12,24 +12,13 @@
 
 #include "libft.h"
 
-#include "libft.h"
-
-char	*ft_strdup(const char *string)
+void	*ft_calloc(size_t nitems, size_t size)
 {
-	size_t	len_string;
-	size_t	count;
-	char	*array;
+	void	*array;
 
-	len_string = ft_strlen(string);
-	count = 0;
-	array = (char *) malloc((len_string + 1) * sizeof(char));
+	array = malloc(nitems * size);
 	if (!array)
 		return (NULL);
-	while (string[count] != '\0')
-	{
-		array[count] = string[count];
-		count++;
-	}
-	array[count] = '\0';
+	ft_bzero(array, nitems * size);
 	return (array);
 }
