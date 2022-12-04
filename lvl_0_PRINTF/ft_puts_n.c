@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 15:41:47 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/04 15:44:05 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/04 15:47:17 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int	ft_puts_n(char *s, int n)
 	c = 0;
 	if (!s)
 		return (write(n, "NULL", 6));
-	while (s[c] != '\0')
+	
+    while (s[c] != '\0')
 	{
-		write(n, &s[c], n);
+		ft_putchar_n(s[c], n);
 		c++;
 	}
 	return (c);
