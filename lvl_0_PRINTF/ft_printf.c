@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:28:17 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/04 15:56:49 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/04 15:59:59 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ int ft_printf(const char *str, ...) //... significa que pode receber qualquer VA
     {
         if (str[c] == '%') //manda para conversao
             {
-            c++;
             next += converter(str[c], arg, 1); //declarado, precisa ter funcao primeiro no codigo
+            c++;
             }
         else //ja imprime
             {
+            c++;
             next += ft_putchar_n(str[c], 1);
-            c++                
             }
     } 
     
