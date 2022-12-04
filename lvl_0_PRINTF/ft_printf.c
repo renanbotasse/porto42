@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:28:17 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/04 15:54:44 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/04 15:56:49 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static int  ft_converter(char cl, va_list arg, int n)
 {
     if (cl == '%')
     {
-        return(ft_putchar_n(1, '%', n));
+        ft_putchar_n('%', n));
+        return(1)
     }
     else if (cl == 'c')
     {
@@ -38,7 +39,7 @@ static int  ft_converter(char cl, va_list arg, int n)
     else if (cl == 'X')
         return(ft_putX_n(va_arg(arg, unsigned int), n, cl));
     else
-        return(ft_putchar_n('Sorry', n));
+        return(ft_puts_n('Sorry', n));
 }
 
 int ft_printf(const char *str, ...) //... significa que pode receber qualquer VAR
