@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 14:28:44 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/11/24 14:32:19 by rbotasse         ###   ########.fr       */
+/*   Created: 2022/11/30 10:32:45 by rbotasse          #+#    #+#             */
+/*   Updated: 2022/11/30 10:32:53 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
- 
- int    ft_isdigt(int c)
- {
-    if (c > '0' && c < '9')
-        return(1);
-    return(0);
- }
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}

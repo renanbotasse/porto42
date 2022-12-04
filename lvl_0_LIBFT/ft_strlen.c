@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 15:02:27 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/11/24 15:19:50 by rbotasse         ###   ########.fr       */
+/*   Created: 2022/11/30 10:34:05 by rbotasse          #+#    #+#             */
+/*   Updated: 2022/11/30 10:34:07 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
 	int	i;
 

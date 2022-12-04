@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/30 10:37:11 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/11/30 10:37:13 by rbotasse         ###   ########.fr       */
+/*   Created: 2022/11/30 10:40:25 by rbotasse          #+#    #+#             */
+/*   Updated: 2022/11/30 10:40:26 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strmapi( char const *s, char (*f)(unsigned int, char))
 {
-	int		i;
-	char	*new_str;
+	size_t	len_s;
+	size_t	count;
+	char	*sf;
 
-	i = 0;
-	new_str = (char *)s;
-	while (s[i] != c)
+	if (s == NULL || f == NULL)
+		return (NULL);
+	len_s = ft_strlen(s);
+	count = 0;
+	sf = (char *) malloc((len_s + 1) * sizeof(char));
+	if (!sf)
+		return (NULL);
+	while (s[count] != '\0')
 	{
-		if (!s[i])
-			return (NULL);
-		i++;
-		new_str++;
+		sf[count] = f(count, s[count]);
+		count++;
 	}
-	return (new_str);
+	sf[count] = '\0';
+	return (sf);
 }

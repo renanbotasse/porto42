@@ -5,22 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 13:08:32 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/11/29 13:08:33 by rbotasse         ###   ########.fr       */
+/*   Created: 2022/11/30 10:39:09 by rbotasse          #+#    #+#             */
+/*   Updated: 2022/11/30 10:39:11 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char *ft_strdup(const char *src)
+char	*ft_strdup(const char *src)
 {
 	unsigned int	i;
 	size_t			len;
 	char			*str;
 
 	len = ft_strlen(src);
-	if (!(str = (char*)malloc(sizeof(*str) * len + 1)))
+	str = (char *)malloc(sizeof(*str) * len + 1);
+	if (!str)
 		return (NULL);
 	i = 0;
 	while (i < len)

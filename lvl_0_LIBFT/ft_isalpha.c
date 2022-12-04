@@ -5,21 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 14:05:40 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/11/29 14:58:33 by rbotasse         ###   ########.fr       */
+/*   Created: 2022/11/30 10:29:26 by rbotasse          #+#    #+#             */
+/*   Updated: 2022/11/30 10:29:31 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
-
-    if (c >= 'A' && c <= 'Z')
-        return(1);
-    
-    else if (c >= 'a' && c <= 'z')
-        return(1);
-    
-    return(0);
+	if (c >= 'A' && c <= 'Z')
+		return (1);
+	else if (c >= 'a' && c <= 'z')
+		return (1);
+	return (0);
 }

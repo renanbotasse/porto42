@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/29 13:22:20 by rbotasse          #+#    #+#              #
-#    Updated: 2022/11/29 14:33:21 by rbotasse         ###   ########.fr        #
+#    Created: 2022/11/30 10:56:35 by rbotasse          #+#    #+#              #
+#    Updated: 2022/11/30 10:56:49 by rbotasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,16 +51,6 @@ SRC = ft_atoi.c \
 	  ft_tolower.c \
 	  ft_toupper.c 
 
-BONUS = ft_lstnew\
-		ft_lstadd_front\
-		ft_lstclear\
-		ft_lstdelone\
-		ft_lstiter\
-		ft_lstlast\
-		ft_lstmap\
-		ft_lstadd_back\
-		ft_lstsize
-
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
@@ -75,7 +65,7 @@ $(NAME): $(OBJ)
 	@cc $(FLAG) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ) $(BONUS:=.o)
+	@rm -f $(OBJ) 
 	@echo "OBJ deleted"
 
 fclean: clean
@@ -84,13 +74,8 @@ fclean: clean
 
 re: fclean all
 
-bonus:	$(OBJ)	$(BONUS:=.o)
-		@ar rc $(NAME) $(OBJ)	$(BONUS:=.o)
-		@echo "$(NAME) with bonus created"
-		@ranlib $(NAME)
-		@echo "$(NAME) with bonus indexed"
-
-.PHONY: all, clean, fclean, re, bonus
+.PHONY: all, clean, fclean, re, 
 so:
 	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJ) $(BONUS:=.o)
+	gcc -nostartfiles -shared -o libft.so $(OBJ) 
+

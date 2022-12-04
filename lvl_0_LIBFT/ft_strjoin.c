@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 21:16:30 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/11/29 21:16:32 by rbotasse         ###   ########.fr       */
+/*   Created: 2022/11/30 10:39:38 by rbotasse          #+#    #+#             */
+/*   Updated: 2022/11/30 10:39:41 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,29 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	len_s1;
-	size_t	len_s2;
-	size_t	count;
-	char	*joined;
+	int		i;
+	int		len1;
+	int		len2;
+	char	*str;
 
-	count = 0;
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	joined = (char *) malloc((len_s1 + len_s2 + 1) * sizeof(char));
-	if (!joined)
-		return (NULL);
-	while (s1[count] != '\0')
+	if (s1 && s2)
 	{
-		joined[count] = s1[count];
-		count++;
+		len1 = ft_strlen(s1);
+		len2 = ft_strlen(s2);
+		str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
+		if (str == NULL)
+			return (NULL);
+		i = -1;
+		while (s1[++i])
+			str[i] = s1[i];
+		i = -1;
+		while (s2[++i])
+		{
+			str[len1] = s2[i];
+			len1++;
+		}
+		str[len1] = '\0';
+		return (str);
 	}
-	count = 0;
-	while (s2[count] != '\0')
-	{
-		joined[len_s1 + count] = s2[count];
-		count++;
-	}
-	joined[len_s1 + count] = '\0';
-	return (joined);
+	return (NULL);
 }
