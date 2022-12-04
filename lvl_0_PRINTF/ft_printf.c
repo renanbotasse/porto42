@@ -6,12 +6,11 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:28:17 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/04 15:37:46 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/04 15:39:32 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <studio.h>
 
 static int  ft_converter(char cl, va_list arg, int n)
 {
