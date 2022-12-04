@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:28:17 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/04 19:39:09 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/04 19:46:30 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int  ft_converter(char cl, va_list arg, int n)
     else if (cl == 'd')
         return(ft_putd_n(va_arg(arg, int), n));
     else if (cl == 'i')
-        return(ft_puti_n(va_arg(arg, int), n));
+        return(ft_putd_n(va_arg(arg, int), n));
     else if (cl == 'u')
         return(ft_putu_n(va_arg(arg, unsigned int), n));
     else if (cl == 'x')
