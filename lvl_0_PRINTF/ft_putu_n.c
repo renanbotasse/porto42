@@ -6,45 +6,45 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:45:20 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/04 19:45:30 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/04 19:49:37 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static unsigned	int	unsigned_digits(unsigned int n)
+static unsigned	int	unsigned(unsigned int n)
 {
-	int	digits;
+	int	d;
 
-	digits = 0;
+	d = 0;
 	while (n != 0)
 	{
 		n = n / 10;
-		digits++;
+		d++;
 	}
-	return (digits);
+	return (d);
 }
 
-int		ft_putlongnbr_fd(unsigned int n, int fd)
+int		ft_putu_n(unsigned int nub, int n)
 {
-	unsigned int	digits;
-	char			*result;
-	int				len;
+	unsigned int	d;
+	char			*r;
+	int				l;
 
+	if (nub == 0)
+		return (write (n, "0", 1));
+	d = unsigned(n);
+	l = d;
+	r = malloc((d + 1) * sizeof(char));
+	r[d--] = '\0';
 	if (n == 0)
-		return (write (fd, "0", 1));
-	digits = unsigned_digits(n);
-	len = digits;
-	result = malloc((digits + 1) * sizeof(char));
-	result[digits--] = '\0';
-	if (n == 0)
-		result[0] = '0';
+		r[0] = '0';
 	while (n != 0)
 	{
-		result[digits--] = (n % 10) + 48;
+		r[d--] = (nub % 10) + 48;
 		n = n / 10;
 	}
-	write(fd, result, len);
-	free(result);
-	return (len);
+	write(n, r, l);
+	free(r);
+	return (l);
 }
