@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:51:04 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/04 19:53:14 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/04 19:56:14 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	count_hex_digits(unsigned int n)
 	}
 	return (c);
 }
-int	ft_putnbr_hex_fd(unsigned int hex, int n, int d)
+int	ft_putx_n(unsigned int hex, int n, int d)
 {
 	int	l;
 
