@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:28:17 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/09 11:01:26 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/09 11:15:57 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 static int  ft_converter(char cl, va_list arg, int n)
 {
-    if (cl == '%')
-    {
-        ft_putchar_n('%', n);
-        return(1);
-    }
-    else if (cl == 'c')
+    if (cl == 'c')
     {
         ft_putchar_n(va_arg(arg, int), n);
         return (1);
+    }
+    else if (cl == '%')
+    {
+        ft_putchar_n('%', n);
+        return(1);
     }
     else if (cl == 's')
         return(ft_puts_n(va_arg(arg, char *), n));

@@ -6,7 +6,7 @@
 #    By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/04 19:59:41 by rbotasse          #+#    #+#              #
-#    Updated: 2022/12/09 10:54:10 by rbotasse         ###   ########.fr        #
+#    Updated: 2022/12/09 11:07:14 by rbotasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,14 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror 
 
-SRC = ft_printf.c srcs/ft_putchar_n.c src/ft_putd_n.c srcs/ft_putp_n.c srcs/ft_puts_n.c srcs/ft_putu_n.c srcs/ft_putx_n.c
+SRC = 	ft_printf.c \
+	  ft_putchar_n.c \
+	  ft_putd_n.c \
+	  ft_putp_n.c \
+	  ft_puts_n.c \
+	  ft_putu_n.c \
+	  ft_putx_n.c \
+	  
 OBJ = $(SRC:.c=.o)
 %.o: %.c
 	@cc $(FLAG) -c $< -o $@
