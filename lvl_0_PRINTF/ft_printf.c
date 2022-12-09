@@ -6,11 +6,12 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:28:17 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/09 09:13:03 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/09 11:01:26 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int  ft_converter(char cl, va_list arg, int n)
 {
@@ -42,31 +43,30 @@ static int  ft_converter(char cl, va_list arg, int n)
         return(ft_puts_n("Sorry", n));
 }
 
-int ft_printf(const char *str, ...) //... significa que pode receber qualquer VAR
+int ft_printf(const char *str, ...)
 {
     int c;
     int next;
-    va_list arg; //va_list recebe os args gerados pelo "..."
-    va_start(arg, str); //va_start é formado  pelo va_list + str
+    va_list arg; 
+    va_start(arg, str);
     
     c = 0;
     next = 0;
     
-    while(str[c] != '\0') //enquanto nao terminar
-    {
-        if (str[c] == '%') //manda para conversao
+    while(str[c] != '\0') 
+    	{
+            if (str[c] != '%')
             {
-            next += ft_converter(str[c], arg, 1); //declarado, precisa ter funcao primeiro no codigo
-            c++;
+                next++;
+                ft_putchar_n(str[c], 1);
             }
-        else //ja imprime
+            if (str[c] == '%')
             {
-            c++;
-            next++;
-            ft_putchar_n(str[c], 1);
+                next += ft_converter(str[c + 1], arg, 1);
+                c++;
             }
-    } 
-    
-    va_end(arg); //finaliza a utilização do VA
-    return(next); //retorna o resultado do NEXT
+            c++;
+	    }
+    va_end(arg); 
+    return(next);
 }
