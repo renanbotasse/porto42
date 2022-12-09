@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:51:04 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/04 19:56:14 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/09 09:21:32 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	ft_putx_n(unsigned int hex, int n, int d)
 		ft_putchar_n(hex + 48, n);
 	else
 	{
-		if (p == 'X')
+		if (l == 'X')
 			ft_putchar_n((hex - 10 + 'A'), n);
-		if (p == 'x')
+		if (l == 'x')
 			ft_putchar_n((hex - 10 + 'a'), n);
 	}
 	return (count_hex_digits(hex));

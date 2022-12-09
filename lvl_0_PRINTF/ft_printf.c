@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:28:17 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/04 19:50:23 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/09 09:13:03 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static int  ft_converter(char cl, va_list arg, int n)
 {
     if (cl == '%')
     {
-        ft_putchar_n('%', n));
-        return(1)
+        ft_putchar_n('%', n);
+        return(1);
     }
     else if (cl == 'c')
     {
         ft_putchar_n(va_arg(arg, int), n);
-        return (1)
+        return (1);
     }
     else if (cl == 's')
         return(ft_puts_n(va_arg(arg, char *), n));
@@ -39,7 +39,7 @@ static int  ft_converter(char cl, va_list arg, int n)
     else if (cl == 'X')
         return(ft_putx_n(va_arg(arg, unsigned int), n, cl));
     else
-        return(ft_puts_n('Sorry', n));
+        return(ft_puts_n("Sorry", n));
 }
 
 int ft_printf(const char *str, ...) //... significa que pode receber qualquer VAR
@@ -56,13 +56,14 @@ int ft_printf(const char *str, ...) //... significa que pode receber qualquer VA
     {
         if (str[c] == '%') //manda para conversao
             {
-            next += converter(str[c], arg, 1); //declarado, precisa ter funcao primeiro no codigo
+            next += ft_converter(str[c], arg, 1); //declarado, precisa ter funcao primeiro no codigo
             c++;
             }
         else //ja imprime
             {
             c++;
-            next += ft_putchar_n(str[c], 1);
+            next++;
+            ft_putchar_n(str[c], 1);
             }
     } 
     

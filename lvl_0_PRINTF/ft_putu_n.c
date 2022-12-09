@@ -6,13 +6,13 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:45:20 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/04 19:49:37 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/09 09:20:37 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static unsigned	int	unsigned(unsigned int n)
+static unsigned	int	ft_unsigned(unsigned int n)
 {
 	int	d;
 
@@ -33,7 +33,7 @@ int		ft_putu_n(unsigned int nub, int n)
 
 	if (nub == 0)
 		return (write (n, "0", 1));
-	d = unsigned(n);
+	d = ft_unsigned(n);
 	l = d;
 	r = malloc((d + 1) * sizeof(char));
 	r[d--] = '\0';

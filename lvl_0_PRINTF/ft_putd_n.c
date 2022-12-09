@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:30:47 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/04 19:37:18 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/09 09:18:15 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*ft_itoa(int n)
 	char	*s;
 
 	c = real_n(n);
-	s = (char *) malloc((s + 2) * sizeof(char));
+	s = malloc((c + 1) * sizeof(char));
 	if (!s)
 		return (NULL);
 	s[c + 1] = '\0';
@@ -55,10 +55,10 @@ static char	*ft_itoa(int n)
 		s[0] = '-';
 	while (n != 0)
 	{
-		s[count--] = absolute(n % 10) + '0';
+		s[c--] = absolute(n % 10) + '0';
 		n /= 10;
 	}
-	return (string);
+	return (s);
 }
 
 int	ft_putd_n(int nub, int n)
