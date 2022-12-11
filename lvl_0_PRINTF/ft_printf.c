@@ -5,68 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/04 14:28:17 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/09 11:15:57 by rbotasse         ###   ########.fr       */
+/*   Created: 2022/12/11 10:58:13 by rbotasse          #+#    #+#             */
+/*   Updated: 2022/12/11 11:00:51 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-static int  ft_converter(char cl, va_list arg, int n)
+int	ft_putchar(char c)
 {
-    if (cl == 'c')
-    {
-        ft_putchar_n(va_arg(arg, int), n);
-        return (1);
-    }
-    else if (cl == '%')
-    {
-        ft_putchar_n('%', n);
-        return(1);
-    }
-    else if (cl == 's')
-        return(ft_puts_n(va_arg(arg, char *), n));
-    else if (cl == 'p')
-        return(ft_putp_n(va_arg(arg, unsigned long long), n));
-    else if (cl == 'd')
-        return(ft_putd_n(va_arg(arg, int), n));
-    else if (cl == 'i')
-        return(ft_putd_n(va_arg(arg, int), n));
-    else if (cl == 'u')
-        return(ft_putu_n(va_arg(arg, unsigned int), n));
-    else if (cl == 'x')
-        return(ft_putx_n(va_arg(arg, unsigned int), n, cl));
-    else if (cl == 'X')
-        return(ft_putx_n(va_arg(arg, unsigned int), n, cl));
-    else
-        return(ft_puts_n("Sorry", n));
+	int	i;
+
+	i = write(1, &c, 1);
+	return (i);
 }
 
-int ft_printf(const char *str, ...)
+int	ft_find(char c, va_list *ptr)
 {
-    int c;
-    int next;
-    va_list arg; 
-    va_start(arg, str);
-    
-    c = 0;
-    next = 0;
-    
-    while(str[c] != '\0') 
-    	{
-            if (str[c] != '%')
-            {
-                next++;
-                ft_putchar_n(str[c], 1);
-            }
-            if (str[c] == '%')
-            {
-                next += ft_converter(str[c + 1], arg, 1);
-                c++;
-            }
-            c++;
-	    }
-    va_end(arg); 
-    return(next);
+	int	i;
+
+	i = 0;
+	if (c == 'c')
+		i += ft_putchar(va_arg(*ptr, int));
+	if (c == '%')
+		i += write(1, "%", 1);
+	if (c == 'd' || c == 'i')
+		i += print_number(va_arg(*ptr, int));
+	if (c == 'u')
+		i += print_unb(va_arg(*ptr, unsigned int));
+	if (c == 'x')
+		i += print_hex(va_arg(*ptr, unsigned int), 1);
+	if (c == 'X')
+		i += print_hex(va_arg(*ptr, unsigned int), 2);
+	if (c == 'p')
+	{
+		i += write(1, "0x", 2);
+		i += print_adr(va_arg(*ptr, unsigned long int));
+	}
+	if (c == 's')
+		i += print_str(va_arg(*ptr, char *));
+	return (i);
 }
+
+int	ft_printf(const char *format, ...)
+{
+	int		l;
+	int		i;
+	va_list	ptr;
+
+	l = 0;
+	i = 0;
+	va_start(ptr, format);
+	while (format[i])
+	{
+		if (format[i] != '%')
+			l += write(1, &format[i], 1);
+		if (format[i] == '%')
+		{
+			l += ft_find(format[i + 1], &ptr);
+			i++;
+		}
+		i++;
+	}
+	va_end(ptr);
+	return (l);
