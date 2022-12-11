@@ -6,13 +6,13 @@
 #    By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 11:11:47 by rbotasse          #+#    #+#              #
-#    Updated: 2022/12/11 11:11:53 by rbotasse         ###   ########.fr        #
+#    Updated: 2022/12/11 11:16:29 by rbotasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS =	ft_printf.c ft_printer.c
+SRCS =	ft_printf.c ft_print.c
 
 OBJS = $(SRCS:.c=.o)
 CFLAGS = -Wall -Werror -Wextra

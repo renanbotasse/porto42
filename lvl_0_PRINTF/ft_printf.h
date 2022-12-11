@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:08:47 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/11 11:11:23 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/11 11:15:25 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_putchar(char c);
 int	ft_find(char c, va_list *ptr);
 int	ft_printf(const char *format, ...);
 int	print_p(unsigned long int nb);
-int	print_u(unsigned int nb;)
+int	print_u(unsigned int nb);
 int	print_x(unsigned int nb, int s);
 int	print_s(char	*str);
 #endif
