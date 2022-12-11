@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:03:25 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/11 11:08:19 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/11 12:50:15 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	print_u(unsigned int nb)
 }
 
 int	print_x(unsigned int nb, int s)
-{
+
 	int	len;
 
 	len = 0;
