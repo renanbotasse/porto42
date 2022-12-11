@@ -6,7 +6,7 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 10:58:13 by rbotasse          #+#    #+#             */
-/*   Updated: 2022/12/11 11:00:51 by rbotasse         ###   ########.fr       */
+/*   Updated: 2022/12/11 11:08:09 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,20 @@ int	ft_find(char c, va_list *ptr)
 	if (c == '%')
 		i += write(1, "%", 1);
 	if (c == 'd' || c == 'i')
-		i += print_number(va_arg(*ptr, int));
+		i += print_d(va_arg(*ptr, int));
 	if (c == 'u')
-		i += print_unb(va_arg(*ptr, unsigned int));
+		i += print_u(va_arg(*ptr, unsigned int));
 	if (c == 'x')
-		i += print_hex(va_arg(*ptr, unsigned int), 1);
+		i += print_x(va_arg(*ptr, unsigned int), 1);
 	if (c == 'X')
-		i += print_hex(va_arg(*ptr, unsigned int), 2);
+		i += print_x(va_arg(*ptr, unsigned int), 2);
 	if (c == 'p')
 	{
 		i += write(1, "0x", 2);
-		i += print_adr(va_arg(*ptr, unsigned long int));
+		i += print_p(va_arg(*ptr, unsigned long int));
 	}
 	if (c == 's')
-		i += print_str(va_arg(*ptr, char *));
+		i += print_s(va_arg(*ptr, char *));
 	return (i);
 }
 
