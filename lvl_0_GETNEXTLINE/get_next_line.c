@@ -6,129 +6,74 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:00:11 by rbotasse          #+#    #+#             */
-/*   Updated: 2023/01/03 17:04:55 by rbotasse         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:38:00 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h" 
+#include "get_next_line.h"
+#include <stdio.h>
 
-static char	*clean_printed(char	*global_buffer)
+char	*backtoleft(char *s1, int offset)
 {
-	size_t	i;
-	char	*new;
-	size_t	j;
+	int		count;
+	char	*array;
 
-	i = 0;
-	while (global_buffer[i] && global_buffer[i] != '\n')
-		i++;
-	if (!global_buffer[i])
+	count = 0;
+	if (s1[offset + 1] == '\0' || offset == -1)
 	{
-		free(global_buffer);
+		free(s1);
 		return (NULL);
 	}
-	new = malloc(((ft_strlen(global_buffer) - i) + 1) * sizeof(char));
-	if (!new)
-		return (NULL);
-	i++;
-	j = 0;
-	while (global_buffer[i])
-		new[j++] = global_buffer[i++];
-	new[j] = '\0';
-	free(global_buffer);
-	return (new);
-}
-
-static char	*get_line(char *global_buffer)
-{
-	size_t	len;
-	size_t	i;
-	char	*line;
-
-	len = 0;
-	i = 0;
-	if (!global_buffer[i])
-		return (NULL);
-	while (global_buffer[len] && global_buffer[len] != '\n')
-		len++;
-	line = malloc((len + 2) * sizeof(char));
-	if (!line)
-		return (NULL);
-	while (i <= len)
+	array = malloc((ft_strlen(s1) - offset + 1) * sizeof(char));
+	while (s1[count + offset + 1] != '\0')
 	{
-		line[i] = global_buffer[i];
-		i++;
+		array[count] = s1[count + offset + 1];
+		count++;
 	}
-	line[i] = '\0';
-	return (line);
+	array[count] = '\0';
+	free(s1);
+	return (array);
 }
 
-static char	*join_n_free(char *global_buffer, char *local_buffer)
+int	ft_alt_strchr(const char *s)
 {
-	size_t	len_global;
-	size_t	len_local;
-	char	*appended;
-	size_t	i;
-	size_t	j;
+	int	count;
 
-	if (!global_buffer || !local_buffer)
-		return (NULL);
-	len_global = ft_strlen(global_buffer);
-	len_local = ft_strlen(local_buffer);
-	appended = malloc((len_global + len_local + 1) * sizeof(char));
-	if (!appended)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (j < len_global)
-		appended[i++] = global_buffer[j++];
-	j = 0;
-	while (j < len_local)
-		appended[i++] = local_buffer[j++];
-	appended[i] = '\0';
-	free(global_buffer);
-	return (appended);
-}
-
-static char	*read_buffsize(int fd, char *global_buffer)
-{
-	char	*buffer;
-	int		bytes_rd;
-
-	if (global_buffer == NULL)
-		global_buffer = ft_calloc(1, sizeof(char));
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
-		return (NULL);
-	bytes_rd = 1;
-	while (bytes_rd > 0)
+	count = 0;
+	while (s[count] != '\0')
 	{
-		bytes_rd = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_rd == -1 || (bytes_rd == 0 && global_buffer == NULL))
-		{
-			free(global_buffer);
-			free(buffer);
-			return (NULL);
-		}
-		buffer[bytes_rd] = '\0';
-		global_buffer = join_n_free(global_buffer, buffer);
-		if (ft_strchr(global_buffer, '\n') == true)
-			break ;
+		if (s[count] == '\n')
+			return (count);
+		count++;
 	}
-	free(buffer);
-	return (global_buffer);
+	return (-1);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*global_buffer;
-	char		*line;
+	ssize_t		byte;
+	char		*lido;
+	static char	*notready;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	global_buffer = read_buffsize(fd, global_buffer);
-	if (!global_buffer)
-		return (NULL);
-	line = get_line(global_buffer);
-	global_buffer = clean_printed(global_buffer);
-	return (line);
+	lido = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	byte = 1;
+	while (ft_alt_strchr(lido) == -1 && byte > 0)
+	{
+		byte = read(fd, lido, BUFFER_SIZE);
+		if (!lido || (byte <= 0 && !notready))
+		{
+			free(lido);
+			return (NULL);
+		}
+		lido[byte] = '\0';
+		notready = ft_alt_strjoin(notready, lido);
+	}
+	if (ft_alt_strchr(notready) > -1)
+		lido = ft_alt_strdup(lido, notready, ft_alt_strchr(notready) + 2);
+	else
+		lido = ft_alt_strjoin(lido, notready);
+	notready = backtoleft(notready, ft_alt_strchr(notready));
+	return (lido);
 }
