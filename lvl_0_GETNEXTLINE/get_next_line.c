@@ -6,110 +6,129 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:00:11 by rbotasse          #+#    #+#             */
-/*   Updated: 2023/01/03 16:00:28 by rbotasse         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:04:55 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* 
-*	GET_NEXT_LINE
-*	-------------
-*	DESCRIPTION
-*	This function takes an opened file descriptor and returns its next line.
-*	This function has undefined behavior when reading from a binary file.
-*	PARAMETERS
-*	#1. A file descriptor 
-*	RETURN VALUES
-*	If successful, get_next_line returns a string with the full line ending in
-*	a line break (`\n`) when there is one. 
-*	If an error occurs, or there's nothing more to read, it returns NULL.
-*	----------------------------------------------------------------------------
-*	AUXILIARY FUNCTIONS
-*	-------------------
-*	READ_TO_LEFT_STR
-*	-----------------
-*	DESCRIPTION
-*	Takes the opened file descriptor and saves on a "buff" variable what readed
-*	from it. Then joins it to the cumulative static variable for the persistence
-*	of the information.
-*	PARAMETERS
-*	#1. A file descriptor.
-*	#2. The pointer to the cumulative static variable from previous runs of
-*	get_next_line.
-*	RETURN VALUES
-*	The new static variable value with buffer joined for the persistence of the info,
-*	or NULL if error.
-*/
+#include "get_next_line.h" 
 
-#include "get_next_line.h"
-#include <unistd.h>
-//#include <stdio.h>
-//#include <fcntl.h>
-
-char	*ft_read_to_left_str(int fd, char *left_str)
+static char	*clean_printed(char	*global_buffer)
 {
-	char	*buff;
-	int		rd_bytes;
+	size_t	i;
+	char	*new;
+	size_t	j;
 
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
-		return (NULL);
-	rd_bytes = 1;
-	while (!ft_strchr(left_str, '\n') && rd_bytes != 0)
+	i = 0;
+	while (global_buffer[i] && global_buffer[i] != '\n')
+		i++;
+	if (!global_buffer[i])
 	{
-		rd_bytes = read(fd, buff, BUFFER_SIZE);
-		if (rd_bytes == -1)
+		free(global_buffer);
+		return (NULL);
+	}
+	new = malloc(((ft_strlen(global_buffer) - i) + 1) * sizeof(char));
+	if (!new)
+		return (NULL);
+	i++;
+	j = 0;
+	while (global_buffer[i])
+		new[j++] = global_buffer[i++];
+	new[j] = '\0';
+	free(global_buffer);
+	return (new);
+}
+
+static char	*get_line(char *global_buffer)
+{
+	size_t	len;
+	size_t	i;
+	char	*line;
+
+	len = 0;
+	i = 0;
+	if (!global_buffer[i])
+		return (NULL);
+	while (global_buffer[len] && global_buffer[len] != '\n')
+		len++;
+	line = malloc((len + 2) * sizeof(char));
+	if (!line)
+		return (NULL);
+	while (i <= len)
+	{
+		line[i] = global_buffer[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+static char	*join_n_free(char *global_buffer, char *local_buffer)
+{
+	size_t	len_global;
+	size_t	len_local;
+	char	*appended;
+	size_t	i;
+	size_t	j;
+
+	if (!global_buffer || !local_buffer)
+		return (NULL);
+	len_global = ft_strlen(global_buffer);
+	len_local = ft_strlen(local_buffer);
+	appended = malloc((len_global + len_local + 1) * sizeof(char));
+	if (!appended)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (j < len_global)
+		appended[i++] = global_buffer[j++];
+	j = 0;
+	while (j < len_local)
+		appended[i++] = local_buffer[j++];
+	appended[i] = '\0';
+	free(global_buffer);
+	return (appended);
+}
+
+static char	*read_buffsize(int fd, char *global_buffer)
+{
+	char	*buffer;
+	int		bytes_rd;
+
+	if (global_buffer == NULL)
+		global_buffer = ft_calloc(1, sizeof(char));
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (NULL);
+	bytes_rd = 1;
+	while (bytes_rd > 0)
+	{
+		bytes_rd = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_rd == -1 || (bytes_rd == 0 && global_buffer == NULL))
 		{
-			free(buff);
+			free(global_buffer);
+			free(buffer);
 			return (NULL);
 		}
-		buff[rd_bytes] = '\0';
-		left_str = ft_strjoin(left_str, buff);
+		buffer[bytes_rd] = '\0';
+		global_buffer = join_n_free(global_buffer, buffer);
+		if (ft_strchr(global_buffer, '\n') == true)
+			break ;
 	}
-	free(buff);
-	return (left_str);
+	free(buffer);
+	return (global_buffer);
 }
 
 char	*get_next_line(int fd)
 {
+	static char	*global_buffer;
 	char		*line;
-	static char	*left_str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	left_str = ft_read_to_left_str(fd, left_str);
-	if (!left_str)
 		return (NULL);
-	line = ft_get_line(left_str);
-	left_str = ft_new_left_str(left_str);
+	global_buffer = read_buffsize(fd, global_buffer);
+	if (!global_buffer)
+		return (NULL);
+	line = get_line(global_buffer);
+	global_buffer = clean_printed(global_buffer);
 	return (line);
 }
-
-/*int	main(void)
-{
-	char	*line;
-	int		i;
-	int		fd1;
-	int		fd2;
-	int		fd3;
-	fd1 = open("tests/test.txt", O_RDONLY);
-	fd2 = open("tests/test2.txt", O_RDONLY);
-	fd3 = open("tests/test3.txt", O_RDONLY);
-	i = 1;
-	while (i < 7)
-	{
-		line = get_next_line(fd1);
-		printf("line [%02d]: %s", i, line);
-		free(line);
-		line = get_next_line(fd2);
-		printf("line [%02d]: %s", i, line);
-		free(line);
-		line = get_next_line(fd3);
-		printf("line [%02d]: %s", i, line);
-		free(line);
-		i++;
-	}
-	close(fd1);
-	close(fd2);
-	close(fd3);
-	return (0);
-}*/
