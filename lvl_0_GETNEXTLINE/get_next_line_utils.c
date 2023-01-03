@@ -6,13 +6,14 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:01:49 by rbotasse          #+#    #+#             */
-/*   Updated: 2023/01/03 17:17:18 by rbotasse         ###   ########.fr       */
+/*   Updated: 2023/01/03 19:09:57 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
+//serve para contar o tamanho da string
 size_t	ft_strlen(const char *str)
 {
 	size_t	count;
@@ -23,6 +24,8 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
+//ft_calloc precisa do ft_bzero para funcionar
+//ft_callor é preenchio de zeros, por isso usamos o ft_bzero
 void	ft_bzero(void *s, size_t n)
 {
 	char	*str2;
@@ -35,17 +38,20 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*ft_calloc(size_t nitems, size_t size)
+//ft_calloc serve para alocar memória, qualquer tipo dela, o espaço que ela cria é preenchido por vazio (bzero)
+//size_t nmemb eh o numero de elementos, size_t size tamanho dos elementos
+void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*array;
 
-	array = malloc(nitems * size);
+	array = malloc(nmemb * size);
 	if (!array)
 		return (NULL);
-	ft_bzero(array, nitems * size);
+	ft_bzero(array, nmemb * size);
 	return (array);
 }
 
+//serve parajuntar uma string na outra e retornar a união dos dois
 char	*ft_alt_strjoin(char *s1, char *s2)
 {
 	size_t	len_s1;
@@ -75,6 +81,7 @@ char	*ft_alt_strjoin(char *s1, char *s2)
 	return (joined);
 }
 
+//returns a pointer to a new string which is a duplicate of the string s
 char	*ft_alt_strdup(char *s2, const char *string, size_t size)
 {
 	size_t	len_string;
