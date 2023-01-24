@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/24 18:33:25 by rbotasse          #+#    #+#             */
+/*   Updated: 2023/01/24 18:34:19 by rbotasse         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*ft_gl(char *holder)
@@ -77,9 +89,6 @@ char	*ft_read_and_save(int fd, char *holder)
 	free(currentLine);
 	return (holder);
 }
-
-
-
 
 char	*get_next_line(int fd)
 {

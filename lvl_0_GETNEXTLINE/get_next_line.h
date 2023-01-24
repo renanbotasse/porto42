@@ -6,10 +6,9 @@
 /*   By: rbotasse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:01:05 by rbotasse          #+#    #+#             */
-/*   Updated: 2023/01/24 16:39:18 by rbotasse         ###   ########.fr       */
+/*   Updated: 2023/01/24 18:35:31 by rbotasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
