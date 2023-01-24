@@ -1,6 +1,6 @@
 
 ### RESUME
-I have to create my libc. We use the same prototypes and implement of the originals functions. The only difference will be their names;
+I have to create my libc. We use the same prototypes and implement the functions of the original. The only difference will be their names:
 - strlen: which calculates the length of a string;
 - strlcpy: which copies a string to another buffer and returns the copied string's length;
 - strlcat: which concatenates two strings and returns the total length of the concatenated string;
