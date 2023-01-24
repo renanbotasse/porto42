@@ -1,5 +1,5 @@
 
-#### RESUME
+### RESUME
 I have to create my libc. We use the same prototypes and implement of the originals functions. The only difference will be their names;
 - strlen: which calculates the length of a string;
 - strlcpy: which copies a string to another buffer and returns the copied string's length;
@@ -36,8 +36,9 @@ I have to create my libc. We use the same prototypes and implement of the origin
 - putendl_fd: which writes a string followed by a newline to a file descriptor;
 - putnbr_fd: which writes an integer to a file descriptor.
 
+***
 
-#### FUNCTIONS
+### FUNCTIONS
 
 - isalpha: Checks if the passed character is an alphabet letter (uppercase or lowercase) and returns a non-zero value (usually 1) if it is an alphabet letter, and 0 if it is not.
 
@@ -83,7 +84,11 @@ I have to create my libc. We use the same prototypes and implement of the origin
 
 - calloc: This function allocates and initializes a block of memory. It takes the number of elements and the size of each element as arguments and returns
 
-#### [TEST REPOSITORY (WAR MACHINE)](https://github.com/0x050f/libft-war-machine)
+***
 
-#### RESULT
+### [TEST REPOSITORY (WAR MACHINE)](https://github.com/0x050f/libft-war-machine)
+
+***
+
+### RESULT
 <a href="https://ibb.co/8Nqwz35"><img src="https://i.ibb.co/pbcTWDz/Screenshot-2023-01-24-at-22-03-17.png" alt="Screenshot-2023-01-24-at-22-03-17" border="0"></a>
