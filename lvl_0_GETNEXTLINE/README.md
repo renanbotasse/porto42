@@ -42,7 +42,7 @@ The function then calls the helper function "ft_holder" passing the buffer "hold
 
 Finally, the function returns the line that was extracted.
 
-It's important to notice that the function is using different names for the helper function but the functionality of the helper function remain the same.
+It's important to notice that the function is using dAchifferent names for the helper function but the functionality of the helper function remain the same.
 
 The get_next_line() function reads a line from a file descriptor and returns it as a string, it uses the ft_read_and_save() function to read data from the file descriptor and save it in a static buffer, ft_gl() function to get a line from the buffer, and ft_holder() function to update the buffer and free any unnecessary memory. The ft_strlen(), ft_strchr() and ft_strjoin() functions are helper functions used by the other functions. The function headers are also described with useful documentation. Overall, it looks like the implementation is ready to use.
 
