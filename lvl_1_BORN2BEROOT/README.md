@@ -1,22 +1,48 @@
 # CIRCLE 1 - BORN2BEROOT
 
 1. TASK
+
 1.1 Introduction
+
 1.2 Mandatory
+
 1.3 Bonus 
+
 2. PROJECT CONCEPT
+
 2.1 Virtual Machine
+
 2.2 How VM work
+
 2.3 LVM
+
 2.4 AppArmor
+
 2.5 Apt or Aptitude
+
 2.6 SSH
+
 2.7 UFW with SSH
+
 2.8 Cron and Wall
+
 2.9 Sudo
+
 2.10 Script
+
 2.11 Rocky or Debian
+
 2.12 TTY
+
+3. WALKTHROUGH 
+3.1 - Downloading Your Virtual Machine
+3.2 - Installing Your Virtual Machine
+3.3 - Starting Your Virtual Machine
+3.4 - Configurating Your Virtual Machine
+3.5 - Connecting to SSH
+3.6 - Continue Configurating Your Virtual Machine
+3.7 - Signature.txt
+3.8 - Your Born2BeRoot Defence Evaluation with Answers
 
 
 # 1. TASK
@@ -111,7 +137,9 @@ To be more clear one of the strongest points of VM is it is partitioned from the
 2.3 LVM
 
 LVM is a form of storage virtualization that offers system administrators a more flexible approach to managing disk storage, this tool gives you the power to allocate disks, create, resize, delete and mirror your HD.
+
 ![image](https://user-images.githubusercontent.com/101360239/216986265-8c0e0ff9-79ca-40e5-80c7-3a08c91683b7.png)
+
 But first, we need to understand 3 concepts in LVM: Volume Groups, Physical Volumes and Logical Volumes.
 Volume Group is a named collection of physical and logical volumes, systems only need one Volume Group to contain the physical and logical volumes. 
 Physical Volumes are the disks; block devices that provide the space to store logical volumes. 
@@ -125,7 +153,9 @@ App is a Mandatory Access Control (MAC). But what is a Mandatory Access Control?
 MAC is a method of limiting access to resources based on the sensitivity of the information.
 You have to define the security label of your resource, this label goes from 0 to any level you need. This works because of the hierarchical classification of the resources, like an inverted pyramid. And you also can slice the levels, some information can be used by Group A or Group B.
 Users can access only the information in a resource to which their security labels entitle them. If the user's security label does not have enough authority, the user cannot access the information in the resource.
+
 ![image](https://user-images.githubusercontent.com/101360239/217017358-0f1a59a0-e1c7-4181-a6bf-ccdd45add915.png)
+
 So, AppArmor is a system of MAC for Linux, used to confine programs and limited resources from Users. 
 AppArmor is so good because the confinement is provided via boot, and you can bind access control to programs rather than to users.
 There are two profile modes: enforcement and complain. 
@@ -169,6 +199,10 @@ Cron is often used to automate system maintenance tasks, such as backups or upda
 And "wall" is a command used to send a message to all logged-in users on a Linux system. It stands for "write all" and broadcasts a message to all active terminals or TTYs.
 The "wall" command is often used in combination with cron to notify users of important events or scheduled maintenance tasks. For example, a system administrator might set up a cron job to run a backup script and then use the "wall" command to notify all users that the backup is in progress and that the system may be temporarily unavailable.
 The message sent using the "wall" command is typically displayed as a full-screen message, and it can be an effective way to communicate with users who are currently logged in to the system. 
+
+cd /usr/local/bin – to show monitoring.sh
+sudo crontab -u root -e – to edit the cron job
+change script to */1 * * * * sleep 30s && script path – to run it every 30 seconds, delete the line to stop the job from running.
 
 ![image](https://user-images.githubusercontent.com/101360239/218760357-54b63d14-3bc0-4f3c-af8a-66d0d4611d34.png)
 
