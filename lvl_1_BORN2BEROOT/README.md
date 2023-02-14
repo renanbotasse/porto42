@@ -35,14 +35,30 @@
 2.12 TTY
 
 3. WALKTHROUGH 
-3.1 - Downloading Your Virtual Machine
-3.2 - Installing Your Virtual Machine
-3.3 - Starting Your Virtual Machine
-3.4 - Configurating Your Virtual Machine
+
+3.1 - Downloading OS and VM
+
+3.2 - Installing VM
+
+3.3 - Installing OS
+
+3. WALKTHROUGH 
+
+3.1 - Downloading OS and VM
+
+3.2 - Installing VM
+
+3.3 - Installing OS
+
+3.4 - Configurating VM
+
 3.5 - Connecting to SSH
-3.6 - Continue Configurating Your Virtual Machine
+
+3.6 - Continue Configurating VM
+
 3.7 - Signature.txt
-3.8 - Your Born2BeRoot Defence Evaluation with Answers
+
+4. COMMANDS
 
 
 # 1. TASK
@@ -239,42 +255,130 @@ Teletype refers to a physical or virtual terminal device used to interact with t
 ![image](https://user-images.githubusercontent.com/101360239/218761419-6726f35e-180f-4dee-9296-7561195b26a3.png)
 
 
-***
+
+3. WALKTHROUGH 
+
+3.1 - Downloading OS and VM
+First we have to download the OS, Debian. After that we have to download the Virtual Machine, VirtualBox.
+
+3.2 - Installing VM
+Click on New
+Choose the Machine Folder > Continue
+Set Memory Size as 1024MB > Continue
+Click on Create a Virtual Hard Disk Now > Create
+Click in VDI (VirtualBox Disk Image) > Continue
+Click on Dynamically Allocated > Continue
+Set the HD as 12 GB > Continue
+Click on Settings > Click on Storage
+Click on Empty from Controller: IDE > Click on Optical Drive > Click on Choose a disk file...
+Choose the OS.iso file
+Click on Virtual Machine > Click OK
+Click on Start
 
 
-### Installation
+3.3 - Installing OS
+Install > Enter
+Choose the language > Enter
+Choose the contry > Enter
+Choose the keyboard > Enter
+Create a hostname (loguin42) > Continue
+Ignore the Domain name > Continue
+Create a hostname password > Continue
+Create a new user > Continue
+Create a new user password > Continue
+Choose the Timezone > Enter
+Guided - use entire disk and set up encrypted LVM > Enter
+Select the Disk > Enter
+Separate /home, /var, and /tmp paritions > Enter
+YES > Enter
+Create a encryption passphrase > Continue
+Re-enter passphrase > Continue
+Type MAX > Continue
+Finish partitioning and write changes to disk > Enter
+YES > Enter
+NO > Enter 
+Choose the contry > Enter
+deb.debian.org. > Enter
+Ignore HTTP proxy information > Continue
+NO > Enter
+Deselect (use SPACE KEY) SSH server and standard system utilities > Enter > Continue
+YES > Enter
+/dev/sda > Enter
+Continue
 
-***
+3.4 - Configurating VM
 
-### Sudo
+3.4.1 - Sudo
+su -
+apt-get update -y
+apt-get upgrade -y
+apt install sudo
+usermod -aG sudo your_username (getent group sudo)
+sudo visudo
+your_username  	ALL=(ALL) ALL
 
-- Installing
-- Adding User to GroupStep 
-- Running rootPrivileged CommandsStep 
-- Configuring
+3.4.2 - GIT and VIM
+apt-get install git -y
+git --version
 
-***
+3.4.3 - SSH
+sudo apt install openssh-server
+sudo systemctl status ssh
+sudo vim /etc/ssh/sshd_config
+Find the line #Port22
+Change to Port 4242 without the #
+Save and Exit Vim
+sudo grep Port /etc/ssh/sshd_config
+sudo service ssh restart
 
-### SSH
-- Setting Up SSH
-- Setting Up UFW
-- Connecting to Server through SSH
+3.4.4 - UFW
+apt-get install ufw
+sudo ufw enable
+sudo ufw status numbered
+sudo ufw allow ssh
+sudo ufw allow 4242
+sudo ufw status numbered
 
-***
+3.5 - Connecting to SSH
+Exit VM
+VirtualBox
+Click on VM Settings
+Click on Network > Adaoter 1 > Advance > Oirt Forwarding
+Change the Host Port and Guest Port to 4242
+Back VM
+sudo systemctl restart ssh
+sudo service sshd status
+Open Terminal and type ssh your_username@127.0.0.1 -p 4242 || In case of error rm ~/.ssh/known_hosts > ssh your_username@127.0.0.1 -p 4242 
+Exit
 
-### User Management
-- Strong Password Policy (Password Age/Strength
-- Creating a New User
-- Creating a New Group
-
-***
-
-### Cron
-- Setting Up
-
-***
-
-### Monitoring
+3.6 - Continue Configurating VM
 
 
-***
+
+3.7 - Signature.txt
+Turn off VM
+Open Terminal > cd
+cd sgoinfre/students/<your_intra_username>/VirtualBox VMs
+shasum VirtualBox.vdi
+Copy the output number and create a signature.txt.
+Submit the signature.txt.
+
+4 - COMMANDS
+sudo ufw status
+sudo systemctl status ssh
+getent group sudo
+getent group user42
+sudo adduser new username
+sudo groupadd groupname
+sudo usermod -aG groupname username
+sudo chage -l username - check password expire rules
+hostnamectl
+hostnamectl set-hostname new_hostname - to change the current hostname
+Restart your Virtual Machine.
+sudo nano /etc/hosts - change current hostname to new hostname
+lsblk to display the partitions
+dpkg -l | grep sudo – to show that sudo is installed
+sudo ufw status numbered
+sudo ufw allow port-id
+sudo ufw delete rule number
+ssh your_user_id@127.0.0.1 -p 4242 - do this in terminal to show that SSH to port 4242 is working
