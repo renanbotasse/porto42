@@ -388,7 +388,7 @@ Deselect (use SPACE KEY) SSH server and standard system utilities > Enter > Cont
 
 YES > Enter
 
-/dev/sda > Enter
+`/dev/sda` > Enter
 
 Continue
 </p>
@@ -399,35 +399,38 @@ Continue
  
 ### 3.4.1 - Sudo
 <p align="justify">
-su -
+ 
+`su -`
 
-apt-get update -y
+`apt-get update -y`
 
-apt-get upgrade -y
+`apt-get upgrade -y`
 
-apt install sudo
+`apt install sudo`
 
-usermod -aG sudo your_username (getent group sudo)
+`usermod -aG sudo your_username (getent group sudo)`
 
-sudo visudo
+`sudo visudo`
 
-your_username  	ALL=(ALL) ALL
+`your_username  	ALL=(ALL) ALL`
 </p>
 
 ### 3.4.2 - GIT and VIM
 <p align="justify">
-apt-get install git -y
+ 
+`apt-get install git -y`
 
-git --version
+`git --version`
 </p>
 
 ### 3.4.3 - SSH
 <p align="justify">
-sudo apt install openssh-server
+ 
+`sudo apt install openssh-server`
 
-sudo systemctl status ssh
+`sudo systemctl status ssh`
 
-sudo vim /etc/ssh/sshd_config
+`sudo vim /etc/ssh/sshd_config`
 
 Find the line #Port22
 
@@ -435,24 +438,25 @@ Change to Port 4242 without the #
 
 Save and Exit Vim
 
-sudo grep Port /etc/ssh/sshd_config
+`sudo grep Port /etc/ssh/sshd_config`
 
-sudo service ssh restart
+`sudo service ssh restart`
 </p>
 
 ### 3.4.4 - UFW
 <p align="justify">
-apt-get install ufw
+ 
+`apt-get install ufw`
 
-sudo ufw enable
+`sudo ufw enable`
 
-sudo ufw status numbered
+`sudo ufw status numbered`
 
-sudo ufw allow ssh
+`sudo ufw allow ssh`
 
-sudo ufw allow 4242
+`sudo ufw allow 4242`
 
-sudo ufw status numbered
+`sudo ufw status numbered`
 </p>
 
 ## 3.5 - Connecting to SSH
@@ -469,20 +473,170 @@ Change the Host Port and Guest Port to 4242
 
 Back VM
 
-sudo systemctl restart ssh
+`sudo systemctl restart ssh`
 
-sudo service sshd status
+`sudo service sshd status`
 
-Open Terminal and type ssh your_username@127.0.0.1 -p 4242 || In case of error rm ~/.ssh/known_hosts > ssh your_username@127.0.0.1 -p 4242 
+Open Terminal and type `ssh your_username@127.0.0.1 -p 4242 || In case of error rm ~/.ssh/known_hosts > ssh your_username@127.0.0.1 -p 4242` 
 
 Exit
 </p>
 
 ## 3.6 - Continue Configurating VM
 <p align="justify">
-
 </p>
 
+### 3.6.1 - Password Policy
+
+`sudo apt-get install libpam-pwquality` (install Password Quality Checking Library)
+
+`sudo vim /etc/pam.d/common-password`
+
+Find this line `password		requisite		pam_deny.so (or pam_pwquakity.so retry=3)`
+
+Add this to the end of that line `minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=77enforce_for_root`
+
+Save and Exit Vim
+
+`sudo vim /etc/login.defs`
+
+Find this part `PASS_MAX_DAYS 9999 PASS_MIN_DAYS 0 PASS_WARN_AGE 7`
+
+Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
+
+`sudo reboot`
+
+### 3.6.2 - Group
+
+`sudo groupadd user42`
+
+`sudo groupadd evaluating`
+
+`getent group`
+
+### 3.6.3 - User (Group)
+
+`cut -d: -f1 /etc/passwd`
+
+`sudo adduser new_username`
+
+`sudo usermod -aG user42 your_username`
+
+`sudo usermod -aG evaluating your_new_username`
+
+`getent group user42`
+
+`getent group evaluating`
+
+`groups`
+
+`chage -l your_new_username`
+
+### 3.6.4 - sudo.log
+
+`cd ~/../`
+`cd var/log`
+`mkdir sudo`
+`cd sudo && touch sudo.log`
+`cd ~/../`
+
+#### 3.6.4.1 - Configuring Sudoers Group
+
+`sudo nano /etc/sudoers`
+
+Now edit your sudoers file to look like the following by adding in all of the defaults in the image below -
+```
+Defaults	env_reset
+
+Defaults	mail_badpass
+
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin"
+
+Defaults	badpass_message="Password is wrong, please try again!"
+
+Defaults	passwd_tries=3
+
+Defaults	logfile="/var/log/sudo.log"
+
+Defaults	log_input, log_output
+
+Defaults	requiretty
+```
+### 3.6.5 - Cron
+
+`apt-get install -y net-tools`
+
+`cd /usr/local/bin/`
+
+`touch monitoring.sh`
+
+`chmod 777 monitoring.sh`
+
+#### 3.6.5.1 - Script
+
+```
+#!/bin/bash
+arc=$(uname -a)
+pcpu=$(grep "physical id" /proc/cpuinfo | sort | uniq | wc -l) 
+vcpu=$(grep "^processor" /proc/cpuinfo | wc -l)
+fram=$(free -m | awk '$1 == "Mem:" {print $2}')
+uram=$(free -m | awk '$1 == "Mem:" {print $3}')
+pram=$(free | awk '$1 == "Mem:" {printf("%.2f"), $3/$2*100}')
+fdisk=$(df -BG | grep '^/dev/' | grep -v '/boot$' | awk '{ft += $2} END {print ft}')
+udisk=$(df -BM | grep '^/dev/' | grep -v '/boot$' | awk '{ut += $3} END {print ut}')
+pdisk=$(df -BM | grep '^/dev/' | grep -v '/boot$' | awk '{ut += $3} {ft+= $2} END {printf("%d"), ut/ft*100}')
+cpul=$(top -bn1 | grep '^%Cpu' | cut -c 9- | xargs | awk '{printf("%.1f%%"), $1 + $3}')
+lb=$(who -b | awk '$1 == "system" {print $3 " " $4}')
+lvmu=$(if [ $(lsblk | grep "lvm" | wc -l) -eq 0 ]; then echo no; else echo yes; fi)
+ctcp=$(ss -neopt state established | wc -l)
+ulog=$(users | wc -w)
+ip=$(hostname -I)
+mac=$(ip link show | grep "ether" | awk '{print $2}')
+cmds=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
+wall "	#Architecture: $arc
+	#CPU physical: $pcpu
+	#vCPU: $vcpu
+	#Memory Usage: $uram/${fram}MB ($pram%)
+	#Disk Usage: $udisk/${fdisk}Gb ($pdisk%)
+	#CPU load: $cpul
+	#Last boot: $lb
+	#LVM use: $lvmu
+	#Connections TCP: $ctcp ESTABLISHED
+	#User log: $ulog
+	#Network: IP $ip ($mac)
+	#Sudo: $cmds cmd"
+ ```
+
+ Terminal2 - `ssh your_host_name42@127.0.0.1 -p 4242`
+ 
+ `cd /usr/local/bin.`
+ 
+ `nano monitoring.sh`
+ 
+ Save and Exit your monitoring.sh
+ 
+ Then type exit to exit the iTerm SSH Login.
+ 
+ Then go back to your Virtual Machine (not iTerm) and continue on with the steps below.
+ 
+ `sudo visudo`
+ 
+ Add in this line `your_username ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh under where its written %sudo ALL=(ALL:ALL) ALL`
+ 
+ It should look like this
+ 
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ 
+ exit and save
+ 
+ `sudo reboot`
+ 
+`sudo /usr/local/bin/monitoring.sh`
+ 
+ `sudo crontab -u root -e`
+ 
+ `*/10 * * * * /usr/local/bin/monitoring.sh`
+ 
 ## 3.7 - Signature.txt
 
 <p align="justify">
@@ -490,7 +644,7 @@ Turn off VM
 
 Open Terminal > cd
 
-cd sgoinfre/students/<your_intra_username>/VirtualBox VMs
+`cd sgoinfre/students/<your_intra_username>/VirtualBox VMs`
 
 shasum VirtualBox.vdi
 
@@ -502,39 +656,40 @@ Submit the signature.txt.
   
 # 4 - COMMANDS
 <p align="justify">
-sudo ufw status
+ 
+`sudo ufw status`
 
-sudo systemctl status ssh
+`sudo systemctl status ssh`
 
-getent group sudo
+`getent group sudo`
 
-getent group user42
+`getent group user42`
 
-sudo adduser new username
+`sudo adduser new username`
 
-sudo groupadd groupname
+`sudo groupadd groupname`
 
-sudo usermod -aG groupname username
+`sudo usermod -aG groupname username`
 
-sudo chage -l username - check password expire rules
+`sudo chage -l username` - check password expire rules
 
-hostnamectl
+`hostnamectl`
 
-hostnamectl set-hostname new_hostname - to change the current hostname
+`hostnamectl set-hostname new_hostname` - to change the current hostname
 
 Restart your Virtual Machine.
 
-sudo nano /etc/hosts - change current hostname to new hostname
+`sudo nano /etc/hosts` - change current hostname to new hostname
 
-lsblk to display the partitions
+`lsblk to display the partitions`
 
-dpkg -l | grep sudo – to show that sudo is installed
+`dpkg -l | grep sudo – to show that sudo is installed`
 
-sudo ufw status numbered
+`sudo ufw status numbered`
 
-sudo ufw allow port-id
+`sudo ufw allow port-id`
 
-sudo ufw delete rule number
+`sudo ufw delete rule number`
 
-ssh your_user_id@127.0.0.1 -p 4242 - do this in terminal to show that SSH to port 4242 is working
+`ssh your_user_id@127.0.0.1 -p 4242 - do this in terminal to show that SSH to port 4242 is working`
 </p>
