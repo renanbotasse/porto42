@@ -300,12 +300,12 @@ Teletype refers to a physical or virtual terminal device used to interact with t
 <p align="justify">
   </p>
   
-## 3.1 - Downloading OS and VM
+## 3.1 Downloading OS and VM
 <p align="justify">
 First we have to download the OS, Debian. After that we have to download the Virtual Machine, VirtualBox.
 </p>
 
-## 3.2 - Installing VM
+## 3.2 Installing VM
 <p align="justify">
 Click on New
 
@@ -333,7 +333,7 @@ Click on Start
 
 </p>
 
-## 3.3 - Installing OS
+## 3.3 Installing OS
 <p align="justify">
 Install > Enter
 
@@ -393,11 +393,11 @@ YES > Enter
 Continue
 </p>
 
-## 3.4 - Configurating VM
+## 3.4 Configurating VM
 <p align="justify">
  </p> 
  
-### 3.4.1 - Sudo
+### 3.4.1 sudo
 <p align="justify">
  
 `su -`
@@ -415,7 +415,7 @@ Continue
 `your_username  	ALL=(ALL) ALL`
 </p>
 
-### 3.4.2 - GIT and VIM
+### 3.4.2 GIT and VIM
 <p align="justify">
  
 `apt-get install git -y`
@@ -423,7 +423,7 @@ Continue
 `git --version`
 </p>
 
-### 3.4.3 - SSH
+### 3.4.3 SSH
 <p align="justify">
  
 `sudo apt install openssh-server`
@@ -443,7 +443,7 @@ Save and Exit Vim
 `sudo service ssh restart`
 </p>
 
-### 3.4.4 - UFW
+### 3.4.4 UFW
 <p align="justify">
  
 `apt-get install ufw`
@@ -459,7 +459,7 @@ Save and Exit Vim
 `sudo ufw status numbered`
 </p>
 
-## 3.5 - Connecting to SSH
+## 3.5 Connecting to SSH
 <p align="justify">
 Exit VM
 
@@ -482,11 +482,11 @@ Open Terminal and type `ssh your_username@127.0.0.1 -p 4242 || In case of error 
 Exit
 </p>
 
-## 3.6 - Continue Configurating VM
+## 3.6 Continue Configurating VM
 <p align="justify">
 </p>
 
-### 3.6.1 - Password Policy
+### 3.6.1 Password Policy
 
 `sudo apt-get install libpam-pwquality` (install Password Quality Checking Library)
 
@@ -506,7 +506,7 @@ Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
 
 `sudo reboot`
 
-### 3.6.2 - Group
+### 3.6.2 Group
 
 `sudo groupadd user42`
 
@@ -514,7 +514,7 @@ Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
 
 `getent group`
 
-### 3.6.3 - User (Group)
+### 3.6.3 User (Group)
 
 `cut -d: -f1 /etc/passwd`
 
@@ -532,7 +532,7 @@ Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
 
 `chage -l your_new_username`
 
-### 3.6.4 - sudo.log
+### 3.6.4 sudo.log
 
 `cd ~/../`
 `cd var/log`
@@ -540,7 +540,7 @@ Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
 `cd sudo && touch sudo.log`
 `cd ~/../`
 
-#### 3.6.4.1 - Configuring Sudoers Group
+#### 3.6.4.1 Configuring Sudoers Group
 
 `sudo nano /etc/sudoers`
 
@@ -562,7 +562,7 @@ Defaults	log_input, log_output
 
 Defaults	requiretty
 ```
-### 3.6.5 - Cron
+### 3.6.5 Cron
 
 `apt-get install -y net-tools`
 
@@ -572,7 +572,7 @@ Defaults	requiretty
 
 `chmod 777 monitoring.sh`
 
-#### 3.6.5.1 - Script
+#### 3.6.5.1 Script
 
 ```
 #!/bin/bash
@@ -637,7 +637,7 @@ wall "	#Architecture: $arc
  
  `*/10 * * * * /usr/local/bin/monitoring.sh`
  
-## 3.7 - Signature.txt
+## 3.7 Signature.txt
 
 <p align="justify">
 Turn off VM
@@ -654,7 +654,7 @@ Submit the signature.txt.
 </p>
 </p>
   
-# 4 - COMMANDS
+# 4 COMMANDS
 <p align="justify">
  
 `sudo ufw status`
