@@ -71,8 +71,8 @@ The purpose of this project is to familiarize you with virtualization, where you
 Although the project allows you to choose between Debian and Rocky, it is recommended that new system administrators opt for Debian. For this reason, we have selected Debian as the operating system for this project.
 
 We must create at least 2 encrypted partitions using LVM:
-
-![Screenshot 2023-02-14 at 16 05 01](https://user-images.githubusercontent.com/101360239/218792124-a2877ec7-6bd2-40e2-9f0d-4bed1120f247.png)
+<img src="https://user-images.githubusercontent.com/101360239/218792124-a2877ec7-6bd2-40e2-9f0d-4bed1120f247.png" width="100" height="100">
+![Screenshot 2023-02-14 at 16 05 01](https://user-images.githubusercontent.com/101360239/218792124-a2877ec7-6bd2-40e2-9f0d-4bed1120f247.png | width=100)
 
 A SSH service will be running on port 4242 only. For security reasons, it must not be possible to connect using SSH as root.
 
@@ -132,9 +132,9 @@ Set up a functional WordPress website with the following services: lighttpd, Mar
 
 Set up a service of choice that you think is useful (NGINX / Apache2 excluded!).
 
-## 2. PROJECT CONCEPT 
+# 2. PROJECT CONCEPT 
 
- 2.1 Virtual Machine
+## 2.1 Virtual Machine
 
 Virtual Machine (VM), is equal to a physical computer. It has CPU, RAM, HD and (usually) can connect to the internet. The only difference is VM work like a software computer, existing only as a code, running inside a physical server. You can have inside your computer a VM, you can run different operating systems (Linux/MAC/Windows), use a big server (like Azure) or your won computer. 
 We named it "Virtual" because is a virtual version of a computer. Perhaps virtual, it has a dedicated amount of CPU, RAM and HD, "borrowed" from a physical host computer, normally a cloud provider's data center.
@@ -142,7 +142,7 @@ We named it "Virtual" because is a virtual version of a computer. Perhaps virtua
 ![image](https://user-images.githubusercontent.com/101360239/218759498-b6a5eb0e-05fa-41b5-b36c-72423eba7276.png)
 
 
-2.2 How VM work
+## 2.2 How VM work
 
 In minimal explanation, VM is a computer file. It is an image that behaves like an actual computer. 
 You can run is a window "separate from the computer" or function as the user's entire computer
@@ -150,7 +150,7 @@ To be more clear one of the strongest points of VM is it is partitioned from the
 
 ![image](https://user-images.githubusercontent.com/101360239/216980968-3070e086-2e0a-48d9-8204-db42dff297ef.png)
 
-2.3 LVM
+## 2.3 LVM
 
 LVM is a form of storage virtualization that offers system administrators a more flexible approach to managing disk storage, this tool gives you the power to allocate disks, create, resize, delete and mirror your HD.
 
@@ -163,7 +163,7 @@ Logical volumes are partitions, they hold a filesystem and get names rather than
 To be clear, if you have more than one HD, with the LVM you can extend "the size of the store" over more than one HD, they are not limited by the real size of each HD, the limit is the total aggregate size.
 You also can create an image of any LV, and with that you can revert the original LV at a later time. This is very handy for backups.
 
-2.4 AppArmor
+## 2.4 AppArmor
 
 App is a Mandatory Access Control (MAC). But what is a Mandatory Access Control? 
 MAC is a method of limiting access to resources based on the sensitivity of the information.
@@ -179,7 +179,7 @@ Profiles loaded in enforcement mode will result in enforcement of the policy def
 Profiles in complain mode will not enforce policy but instead report policy violation attempts.
 The big difference from other MAC systems on Linux is the possibility of mixing enforcement and complain profiles.
 
-2.5 Apt or Aptitude
+## 2.5 Apt or Aptitude
 
 APT stands for Advanced Packaging Tool, an open/source tool, designed to handle software installation and removal. 
 It is a command-line tool with no visual reference from a graphical interface.
@@ -187,7 +187,7 @@ The word that rules APT is flexible. The user can configure how APT works, inclu
 On the other side, Aptitude is close to API, but you have a graphical interface, you use to emulate most of the apt get's command line and you have flexible but less than APT.
 API can be used for package up-gradation, installation, resolving dependencies, system up-gradation, and more. However, Aptitude is good to inclusion functionalities of apt-cache and apt-mark, having more functionality, including package search, setting package installation as automation or manual, and more refined actions on the packages.
 
-2.6 SSH
+## 2.6 SSH
 
 SSH or Secure Shell is a network communication protocol that enables two computers to communicate (c.f http or hypertext transfer protocol, which is the protocol used to transfer hypertext such as web pages) and share data. An inherent feature of ssh is that the communication between the two computers is encrypted meaning that it is suitable for use on insecure networks.
 SSH is often used to "login" and perform operations on remote computers but it may also be used for transferring data.
@@ -197,7 +197,7 @@ SSH enables us to provide a service with encrypted access for the widest range o
 
 
 
-2.7 UFW with SSH
+## 2.7 UFW with SSH
 
 UFW stands for Uncomplicated Firewall. It is a command-line interface firewall configuration tool used in Linux systems to manage incoming and outgoing traffic. UFW is designed to make it easier for users to manage their firewall rules without requiring advanced knowledge of iptables
 A firewall is a security system that monitors and controls the incoming and outgoing network traffic based on predetermined security rules. It acts as a barrier between a trusted internal network and an untrusted external network, such as the internet, to protect against unauthorized access and malicious attacks. Firewalls can be hardware devices, software programs, or a combination of both. They are a fundamental component of network security and help prevent data breaches, malware infections, and other cyber threats.
@@ -208,7 +208,7 @@ When using SSH to connect to a remote Linux system, the connection is typically 
 
 
 
-2.8 Cron and Wall
+## 2.8 Cron and Wall
 
 Cron is a job scheduler. It allows users to schedule tasks or commands to run automatically at specified intervals. These scheduled tasks are known as "cron jobs". 
 Cron is often used to automate system maintenance tasks, such as backups or updates, and to perform periodic tasks like sending emails or generating reports. 
@@ -223,7 +223,7 @@ change script to */1 * * * * sleep 30s && script path – to run it every 30 sec
 ![image](https://user-images.githubusercontent.com/101360239/218760357-54b63d14-3bc0-4f3c-af8a-66d0d4611d34.png)
 
 
-2.9 Sudo
+## 2.9 Sudo
 
 Sudo or "superuser do" is a command-line utility that allows users to execute commands with the privileges of another user, typically the root user. It is often used to perform administrative tasks that require elevated privileges, such as installing software or modifying system settings.
 The use of sudo helps to prevent unauthorized access to the root account, which is a powerful account that can make system-wide changes. Instead of logging in as the root user, which can be dangerous and should be avoided whenever possible, users can use the sudo command to temporarily elevate their privileges and perform the necessary tasks.
@@ -232,7 +232,7 @@ The use of sudo helps to prevent unauthorized access to the root account, which 
 
 
 
-2.10 Script
+## 2.10 Script
 
 A script is a program written in a scripting language that can be executed by an interpreter or a command-line interface. Scripts are typically used to automate tasks or perform repetitive actions, such as file manipulation, system administration, or data processing.
 Scripts can be executed manually from a command-line interface or scheduled to run automatically at specific intervals using tools such as cron. They can also be integrated with other programs or systems using APIs or other interfaces, making them versatile and powerful tools for automating tasks and improving productivity.
@@ -241,14 +241,14 @@ Scripts can be executed manually from a command-line interface or scheduled to r
 
 Scripts can be executed manually from a command-line interface or scheduled to run automatically at specific intervals using tools such as cron. They can also be integrated with other programs or systems using APIs or other interfaces, making them versatile and powerful tools for automating tasks and improving productivity.
 
-2.11 Rocky or Debian
+## 2.11 Rocky or Debian
 
 Rocky and Debian are high-quality Linux distributions, but they have different strengths and target audiences. Debian is stable and with a long history, while Rocky is a newer design for users who prefer a rolling release model and are familiar with the Red Hat/CentOS ecosystem.
 
 ![image](https://user-images.githubusercontent.com/101360239/218761262-e7f6e3b8-42ed-414d-b23f-f2c64151751a.png)
 
 
-2.12 TTY
+## 2.12 TTY
 
 Teletype refers to a physical or virtual terminal device used to interact with the system.
 
@@ -256,129 +256,228 @@ Teletype refers to a physical or virtual terminal device used to interact with t
 
 
 
-3. WALKTHROUGH 
+# 3. WALKTHROUGH 
 
-3.1 - Downloading OS and VM
+## 3.1 - Downloading OS and VM
+
 First we have to download the OS, Debian. After that we have to download the Virtual Machine, VirtualBox.
 
-3.2 - Installing VM
+## 3.2 - Installing VM
+
 Click on New
+
 Choose the Machine Folder > Continue
+
 Set Memory Size as 1024MB > Continue
+
 Click on Create a Virtual Hard Disk Now > Create
+
 Click in VDI (VirtualBox Disk Image) > Continue
+
 Click on Dynamically Allocated > Continue
+
 Set the HD as 12 GB > Continue
+
 Click on Settings > Click on Storage
+
 Click on Empty from Controller: IDE > Click on Optical Drive > Click on Choose a disk file...
+
 Choose the OS.iso file
+
 Click on Virtual Machine > Click OK
+
 Click on Start
 
 
-3.3 - Installing OS
+## 3.3 - Installing OS
+
 Install > Enter
+
 Choose the language > Enter
+
 Choose the contry > Enter
+
 Choose the keyboard > Enter
+
 Create a hostname (loguin42) > Continue
+
 Ignore the Domain name > Continue
+
 Create a hostname password > Continue
+
 Create a new user > Continue
+
+
 Create a new user password > Continue
+
 Choose the Timezone > Enter
+
 Guided - use entire disk and set up encrypted LVM > Enter
+
 Select the Disk > Enter
+
 Separate /home, /var, and /tmp paritions > Enter
+
 YES > Enter
+
 Create a encryption passphrase > Continue
+
 Re-enter passphrase > Continue
+
 Type MAX > Continue
+
 Finish partitioning and write changes to disk > Enter
+
 YES > Enter
+
 NO > Enter 
+
 Choose the contry > Enter
+
 deb.debian.org. > Enter
+
 Ignore HTTP proxy information > Continue
+
 NO > Enter
+
 Deselect (use SPACE KEY) SSH server and standard system utilities > Enter > Continue
+
 YES > Enter
+
 /dev/sda > Enter
+
 Continue
 
-3.4 - Configurating VM
+## 3.4 - Configurating VM
 
-3.4.1 - Sudo
+### 3.4.1 - Sudo
+
 su -
+
 apt-get update -y
+
 apt-get upgrade -y
+
 apt install sudo
+
 usermod -aG sudo your_username (getent group sudo)
+
 sudo visudo
+
 your_username  	ALL=(ALL) ALL
 
-3.4.2 - GIT and VIM
+### 3.4.2 - GIT and VIM
+
 apt-get install git -y
+
 git --version
 
-3.4.3 - SSH
+### 3.4.3 - SSH
+
 sudo apt install openssh-server
+
 sudo systemctl status ssh
+
 sudo vim /etc/ssh/sshd_config
+
 Find the line #Port22
+
 Change to Port 4242 without the #
+
 Save and Exit Vim
+
 sudo grep Port /etc/ssh/sshd_config
+
 sudo service ssh restart
 
-3.4.4 - UFW
+### 3.4.4 - UFW
+
 apt-get install ufw
+
 sudo ufw enable
-sudo ufw status numbered
-sudo ufw allow ssh
-sudo ufw allow 4242
+
 sudo ufw status numbered
 
-3.5 - Connecting to SSH
+sudo ufw allow ssh
+
+sudo ufw allow 4242
+
+sudo ufw status numbered
+
+## 3.5 - Connecting to SSH
+
 Exit VM
+
 VirtualBox
+
 Click on VM Settings
+
 Click on Network > Adaoter 1 > Advance > Oirt Forwarding
+
 Change the Host Port and Guest Port to 4242
+
 Back VM
+
 sudo systemctl restart ssh
+
 sudo service sshd status
+
 Open Terminal and type ssh your_username@127.0.0.1 -p 4242 || In case of error rm ~/.ssh/known_hosts > ssh your_username@127.0.0.1 -p 4242 
+
 Exit
 
-3.6 - Continue Configurating VM
+## 3.6 - Continue Configurating VM
 
 
 
-3.7 - Signature.txt
+## 3.7 - Signature.txt
+
 Turn off VM
+
 Open Terminal > cd
+
 cd sgoinfre/students/<your_intra_username>/VirtualBox VMs
+
 shasum VirtualBox.vdi
+
 Copy the output number and create a signature.txt.
+
 Submit the signature.txt.
 
-4 - COMMANDS
+# 4 - COMMANDS
+
 sudo ufw status
+
 sudo systemctl status ssh
+
 getent group sudo
+
 getent group user42
+
 sudo adduser new username
+
 sudo groupadd groupname
+
 sudo usermod -aG groupname username
+
 sudo chage -l username - check password expire rules
+
 hostnamectl
+
 hostnamectl set-hostname new_hostname - to change the current hostname
+
 Restart your Virtual Machine.
+
 sudo nano /etc/hosts - change current hostname to new hostname
+
 lsblk to display the partitions
+
 dpkg -l | grep sudo – to show that sudo is installed
+
 sudo ufw status numbered
+
 sudo ufw allow port-id
+
 sudo ufw delete rule number
+
 ssh your_user_id@127.0.0.1 -p 4242 - do this in terminal to show that SSH to port 4242 is working
