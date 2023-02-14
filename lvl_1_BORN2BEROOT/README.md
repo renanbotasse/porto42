@@ -66,6 +66,7 @@
 <p align="justify">
 The purpose of this project is to familiarize you with virtualization, where you will follow step-by-step instructions to create your first virtual machine using VirtualBox or UTM if VirtualBox is unavailable. By the end of this project, you will have the ability to set up your operating system with stringent guidelines in place.
  </p>
+ 
 ## 1.2 Mandatory 
 <p align="justify">
 Although the project allows you to choose between Debian and Rocky, it is recommended that new system administrators opt for Debian. For this reason, we have selected Debian as the operating system for this project.
