@@ -36,27 +36,27 @@
 
 3. WALKTHROUGH 
 
-3.1 - Downloading OS and VM
+3.1 Downloading OS and VM
 
-3.2 - Installing VM
+3.2 Installing VM
 
-3.3 - Installing OS
+3.3 Installing OS
 
 3. WALKTHROUGH 
 
-3.1 - Downloading OS and VM
+3.1 Downloading OS and VM
 
-3.2 - Installing VM
+3.2 Installing VM
 
-3.3 - Installing OS
+3.3 Installing OS
 
-3.4 - Configurating VM
+3.4 Configurating VM
 
-3.5 - Connecting to SSH
+3.5 Connecting to SSH
 
-3.6 - Continue Configurating VM
+3.6 Continue Configurating VM
 
-3.7 - Signature.txt
+3.7 Signature.txt
 
 4. COMMANDS
 
