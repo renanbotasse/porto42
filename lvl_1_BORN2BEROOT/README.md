@@ -320,7 +320,7 @@ Click in VDI (VirtualBox Disk Image) > Continue
 
 Click on Dynamically Allocated > Continue
 
-Set the HD as 12 GB > Continue
+Set the HD as 8 GB > Continue
 
 Click on Settings > Click on Storage
 
