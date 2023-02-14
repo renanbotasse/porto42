@@ -1,5 +1,16 @@
 # CIRCLE 1 - BORN2BEROOT
 
+# NEED
+- Not connect using SSH as root (sudo gedit /etc/ssh/sshd_config)
+- Modify hostname (/etc/pam.d/common-password)
+- sudo Autentication 3 times and Error Msg
+- sudo action archived
+- TTY
+- sudo paths restricted
+- 10/10 min script
+
+
+
 1. TASK
 
 1.1 Introduction
