@@ -1,3 +1,4 @@
+# CIRCLE 1 - 1.1 GET NEXT LINE
 #### RESUME
 The get_next_line() function reads a line from a file descriptor and returns it as a string, it uses the ft_read_and_save() function to read data from the file descriptor and save it in a static buffer, ft_gl() function to get a line from the buffer, and ft_holder() function to update the buffer and free any unnecessary memory. The ft_strlen(), ft_strchr() and ft_strjoin() are helper functions.
 
