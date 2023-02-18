@@ -1,4 +1,4 @@
-# CIRCLE 1 - 1.3 BORN2BEROOT
+# CIRCLE 1 - 1.2 BORN2BEROOT
 
 # NEED
 - Not connect using SSH as root (sudo gedit /etc/ssh/sshd_config)
