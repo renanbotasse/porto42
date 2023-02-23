@@ -27,7 +27,7 @@ Project Delimitations
 - If we reach the end of the file (read() = 0), we concatenate with the previous buffer.
 - Finally, we have to point the passed line pointer to an allocated string that spanned the entire line without the '\n'. Then we free the memory allocated in the intermediate strings and return 1 or 0 for '\n' or end of file respectively.
 - If the parameters have a problem (BUFFER_SIZE <= 0), or in some of these operations we do not participate in allocating memory, we release all the allocated memory and return -1.
-- Your function must be memory leak free.
+- The function must be memory leak free.
 - When you get to the end of file, you should store the current buffer in "line". If the buffer is empty, you must store a string of empty characters in "line". When you get to the end of file your function should keep 0 memory allocated with malloc except for the last buffer which you should have stored in "line". What you have stored in "line" must be free-capable.
 
 ***
@@ -77,12 +77,10 @@ Responsible for extracting the line from the holder buffer up to the newline cha
 
 #### FT_STRLEN
 Computes the length of the input string str up to, but not including the terminating null character.
-
+The function ft_strlen() takes in a single parameter, str, which is a pointer to a null-terminated string. It initializes a variable c to 0 and checks if the str pointer is NULL, if it is, it returns 0. If not, it enters a while loop that continues to iterate until the character at the current index of str is the null character '\0'. For each iteration, the variable c is incremented. Once the while loop terminates, c holds the length of the string and is returned.
 ***
 
 #### FT_STRCHR
-The function ft_strlen() takes in a single parameter, str, which is a pointer to a null-terminated string. It initializes a variable c to 0 and checks if the str pointer is NULL, if it is, it returns 0. If not, it enters a while loop that continues to iterate until the character at the current index of str is the null character '\0'. For each iteration, the variable c is incremented. Once the while loop terminates, c holds the length of the string and is returned.
-
 ft_strchr() takes in two parameters, s, a pointer to a null-terminated string and c, which is the character to be searched for in s. Like ft_strlen(), it also checks if the s pointer is NULL and returns 0 if it is. If c is the null character '\0', it returns a pointer to the position in the string where the null character is located, which is the end of the string. If not, it initializes a variable I to 0, and enters a while loop that continues to iterate until the character at the current index of s is the null character '\0'. For each iteration, it checks if the character at the current index of s is equal to the character c passed as the second parameter. If it is, it returns a pointer to the current index of s. If the while loop terminates, it means the character c was not found in s, so it returns 0.
 
 ***
