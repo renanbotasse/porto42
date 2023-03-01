@@ -1,56 +1,31 @@
 # CIRCLE 1 - 1.2 BORN2BEROOT
 
 # Table of contents
-1. [TASK](#task)	
-1.1. [Introduction](#introduction)
-
-1.2. [Mandatory](#mandatory)
-
-1.3. [Bonus](#bonus)
-
+1. [TASK](#task)
+	- 1.1. [Introduction](#introduction)
+	- 1.2. [Mandatory](#mandatory)
+	- 1.3. [Bonus](#bonus)
 2. [PROJECT CONCEPT](#projectconcept)
-
-2.1. [Virtual Machine](#virtualmachine)
-
-2.2. [How VM work](#howvmwork)
-
-2.3. [LVM](#lvm)
-
-2.4. [AppArmor](#apparmor)
-
-2.5. [Apt or Aptitude](#aptoraptitude)
-
-2.6. [SSH](#ssh)
-
-2.7. [UFW with SSH](#ufwwithssh)
-
-2.8. [Cron and Wall](#cronandwall)
-
-2.9. [Sudo](#sudo)
-
-2.10. [Script](#script)
-
-2.11. [Rocky or Debian](#rockyordebian)
-
-2.12. [TTY](#tty)
-
-3. [WALKTHROUGH](#walkthrough) 
-
-3.1. [Downloading OS and VM](#downloadingosandvm)
-
-3.2. [Installing VM](#installingvm)
-
-3.3. [Installing OS](#installingos)
-
-3.4. [Configurating VM](#configuratingvm)
-
-
-3.5. [Connecting to SSH](#connectingtossh)
-
-3.6. [Continue Configurating VM](#continueconfiguratingvm)
-
-3.7. [Signature.txt](#signature)
-
+	- 2.1. [Virtual Machine](#virtualmachine)
+	- 2.2. [How VM work](#howvmwork)
+	- 2.3. [LVM](#lvm)
+	- 2.4. [AppArmor](#apparmor)
+	- 2.5. [Apt or Aptitude](#aptoraptitude)
+	- 2.6. [SSH](#ssh)
+	- 2.7. [UFW with SSH](#ufwwithssh)
+	- 2.8. [Cron and Wall](#cronandwall)
+	- 2.9. [Sudo](#sudo)
+	- 2.10. [Script](#script)
+	- 2.11. [Rocky or Debian](#rockyordebian)
+	- 2.12. [TTY](#tty)
+3. [WALKTHROUGH](#walkthrough)
+	- 3.1. [Downloading OS and VM](#downloadingosandvm)
+	- 3.2. [Installing VM](#installingvm)
+	- 3.3. [Installing OS](#installingos)
+	- 3.4. [Configurating VM](#configuratingvm)
+	- 3.5. [Connecting to SSH](#connectingtossh)
+	- 3.6. [Continue Configurating VM](#continueconfiguratingvm)
+	- 3.7. [Signature.txt](#signature)
 4. [COMMANDS](#commands)
 
 
