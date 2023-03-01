@@ -35,10 +35,10 @@
 		- 3.6.3 [User (Group)](#user) ✅
 		- 3.6.4 [sudo.log](#sudolog) ✅
 			- 3.6.4.1 [Configuring sudoers group](#sudoers) ✅
-		- 3.6.5 [cron](#cron) ❗️
-		- 3.6.6 [Script](#script) ✅
+		- 3.6.5 [cron](#cron) ✅
+		- 3.6.6 [Script](#script)❗️
 	- 3.7. [Signature.txt](#signature) ✅
-4. [COMMANDS](#commands)
+4. [COMMANDS](#commands)❗️
 
 ***
 
@@ -594,7 +594,7 @@ Defaults	requiretty
 
 `chmod 777 monitoring.sh`
 
-#### 3.6.6 Script <a name="script"></a>
+### 3.6.6 Script <a name="script"></a>
 
 ```
 #!/bin/bash
