@@ -169,7 +169,7 @@ Users can access only the information in a resource to which their security labe
 <img src="https://user-images.githubusercontent.com/101360239/217017358-0f1a59a0-e1c7-4181-a6bf-ccdd45add915.png" width="600" height="300">
 </p>
 
-<p align="center">
+<p align="justify">
 So, AppArmor is a system of MAC for Linux, used to confine programs and limited resources from Users. 
 AppArmor is so good because the confinement is provided via boot, and you can bind access control to programs rather than to users.
 There are two profile modes: enforcement and complain. 
