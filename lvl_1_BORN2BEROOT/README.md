@@ -10,15 +10,15 @@
 	- 2.1. [Virtual Machine](#virtualmachine) ✅
 	- 2.2. [How VM work](#howvmwork) ✅
 	- 2.3. [LVM](#lvm) ✅
-	- 2.4. [AppArmor](#apparmor)
-	- 2.5. [Apt or Aptitude](#aptoraptitude)
-	- 2.6. [SSH](#ssh)
-	- 2.7. [UFW with SSH](#ufwwithssh)
-	- 2.8. [Cron and Wall](#cronandwall)
-	- 2.9. [Sudo](#sudo)
-	- 2.10. [Script](#script)
-	- 2.11. [Rocky or Debian](#rockyordebian)
-	- 2.12. [TTY](#tty)
+	- 2.4. [AppArmor](#apparmor) ✅
+	- 2.5. [Apt or Aptitude](#aptoraptitude) ✅
+	- 2.6. [SSH](#ssh) ✅
+	- 2.7. [UFW with SSH](#ufwwithssh) ✅
+	- 2.8. [Cron and Wall](#cronandwall) ✅
+	- 2.9. [Sudo](#sudo) ✅
+	- 2.10. [Script](#script) ✅
+	- 2.11. [Rocky or Debian](#rockyordebian) ✅
+	- 2.12. [TTY](#tty) ✅
 3. [WALKTHROUGH](#walkthrough)
 	- 3.1. [Downloading OS and VM](#downloadingosandvm)
 	- 3.2. [Installing VM](#installingvm)
@@ -113,6 +113,8 @@ Set up a functional WordPress website with the following services: lighttpd, Mar
 
 Set up a service of choice that you think is useful (NGINX / Apache2 excluded!).
 </p>
+
+***
 
 # 2. PROJECT CONCEPT <a name="projectconcept"></a>
 
@@ -266,12 +268,13 @@ Rocky and Debian are high-quality Linux distributions, but they have different s
 ## 2.12 TTY <a name="tty"></a>
 <p align="justify">
 Teletype refers to a physical or virtual terminal device used to interact with the system.
+</p>
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/101360239/218761419-6726f35e-180f-4dee-9296-7561195b26a3.png" width="600" height="300">
 </p>
 
-</p>
+***
 
 # 3. WALKTHROUGH <a name="walkthrough"></a>
 <p align="justify">
