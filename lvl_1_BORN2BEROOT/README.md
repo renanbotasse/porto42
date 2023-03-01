@@ -40,11 +40,9 @@ The purpose of this project is to familiarize you with virtualization, where you
 ## 1.2 Mandatory <a name="mandatory"></a>
 
 <p align="justify">
-
 Although the project allows you to choose between Debian and Rocky, it is recommended that new system administrators opt for Debian. For this reason, we have selected Debian as the operating system for this project.
 
 We must create at least 2 encrypted partitions using LVM:
-
 </p>
 
 <p align="center">
@@ -52,20 +50,22 @@ We must create at least 2 encrypted partitions using LVM:
 </p>
 
 <p align="justify">
-
 A SSH service will be running on port 4242 only. For security reasons, it must not be possible to connect using SSH as root.
-
-We have to configure your operating system with the UFW firewall and thus leave only port 4242 open.
-
-To meet the project requirements, we must ensure that the hostname of our virtual machine ends with 42 and matches our login (e.g., rb42). During evaluation, we will be required to modify this hostname. Additionally, we must implement a strong password policy, and install and configure sudo according to strict guidelines. Apart from the root user, we must create a user with our login as the username, and ensure that the user belongs to both the user42 and sudo groups.
-
-To establish a robust password policy, we must adhere to the following criteria:
-
 </p>
 
+<p align="justify">
+We have to configure your operating system with the UFW firewall and thus leave only port 4242 open.
+</p>
 
 <p align="justify">
+To meet the project requirements, we must ensure that the hostname of our virtual machine ends with 42 and matches our login (e.g., rb42). During evaluation, we will be required to modify this hostname. Additionally, we must implement a strong password policy, and install and configure sudo according to strict guidelines. Apart from the root user, we must create a user with our login as the username, and ensure that the user belongs to both the user42 and sudo groups.
+</p>
 
+<p align="justify">
+To establish a robust password policy, we must adhere to the following criteria:
+</p>
+
+<p align="justify">
 Passwords must expire every 30 days.
 The minimum number of days before a password can be modified will be set to 2.
 A warning message must be displayed to the user 7 days before their password expires.
@@ -73,23 +73,29 @@ Passwords must be at least 10 characters in length, contain at least one upperca
 Usernames must not be included in passwords.
 The rule that requires the password to have at least 7 characters that are not part of the former password does not apply to the root password.
 The root password must also comply with this policy.
+</p>
 
+<p align="justify">
 To establish a robust configuration for the sudo group, we must comply with the following guidelines:
+</p>
 
+<p align="justify">
 Sudo authentication attempts must be limited to 3 in case of an incorrect password.
 A customized error message must be displayed in the event of an incorrect password when using sudo.
 Each sudo action must be archived, including inputs and outputs, and the log file must be stored in the /var/log/sudo/ directory.
 The TTY mode must be enabled to enhance security.
 The paths that can be used by sudo must be restricted to improve security. For example: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
-
-As the final step, we need to create a bash script named "monitoring.sh." This script should display certain information on all terminals every 10 minutes (use "wall" for this purpose) during server startup. The banner can be added optionally, and no errors should be visible.
-
-The following information must always be displayed by the script:
-
 </p>
 
 <p align="justify">
+As the final step, we need to create a bash script named "monitoring.sh." This script should display certain information on all terminals every 10 minutes (use "wall" for this purpose) during server startup. The banner can be added optionally, and no errors should be visible.
+</p>
 
+<p align="justify">
+The following information must always be displayed by the script:
+</p>
+
+<p align="justify">
 The architecture of the operating system and its kernel version
 The number of physical processors
 The number of virtual processors
@@ -103,7 +109,6 @@ The number of users currently using the server
 The IPv4 address of the server and its MAC (Media Access Control) address
 The number of commands executed with the sudo program.
 Here's an example of how the script is supposed to work:
-
 </p>
 
 <p align="center">
@@ -111,9 +116,7 @@ Here's an example of how the script is supposed to work:
 </p>
 
 <p align="justify">
-
 Below are two commands you can use to check some of the subject’s requirements:
-
 </p>
 
 <p align="center">
