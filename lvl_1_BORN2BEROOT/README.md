@@ -28,9 +28,16 @@
 		- 3.4.2 [GIT and VIM](#gitandvim3) ✅
 		- 3.4.3 [SSH](#ssh3) ✅
 		- 3.4.4 [UFW](#ufw3) ✅
-	- 3.5. [Connecting to SSH](#connectingtossh)
-	- 3.6. [Continue Configurating VM](#continueconfiguratingvm)
-	- 3.7. [Signature.txt](#signature)
+	- 3.5. [Connecting to SSH](#connectingtossh) ✅
+	- 3.6. [Continue Configurating VM](#continueconfiguratingvm) ✅
+		- 3.6.1 [Password Policy](#passwordpolicy) ✅
+		- 3.6.2 [Group](#group) ✅
+		- 3.6.3 [User (Group)](#user) ✅
+		- 3.6.4 [sudo.log](#sudolog) ✅
+			- 3.6.4.1 [Configuring sudoers group](#sudoers) ✅
+		- 3.6.5 [cron](#cron) ❗️
+		- 3.6.6 [Script](#script) ✅
+	- 3.7. [Signature.txt](#signature) ✅
 4. [COMMANDS](#commands)
 
 ***
@@ -454,53 +461,68 @@ First we have to download the OS, Debian. After that we have to download the Vir
 </p>
 
 ## 3.5 Connecting to SSH <a name="connectingtossh"></a>
-<p align="justify">
-Exit VM
 
-VirtualBox
+- Exit VM
 
-Click on VM Settings
+- VirtualBox
 
-Click on Network > Adaoter 1 > Advance > Oirt Forwarding
+- Click on VM Settings
 
-Change the Host Port and Guest Port to 4242
+- Click on Network > Adaoter 1 > Advance > Oirt Forwarding
 
-Back VM
+- Change the Host Port and Guest Port to 4242
+
+- Back VM
 
 `sudo systemctl restart ssh`
 
 `sudo service sshd status`
 
-Open Terminal and type `ssh your_username@127.0.0.1 -p 4242 || In case of error rm ~/.ssh/known_hosts > ssh your_username@127.0.0.1 -p 4242` 
+- Open Terminal and type:
 
-Exit
-</p>
+`ssh your_username@127.0.0.1 -p 4242`
+
+- In case of error:
+
+`rm ~/.ssh/known_hosts > ssh your_username@127.0.0.1 -p 4242` 
+
+- Exit
 
 ## 3.6 Continue Configurating VM <a name="continueconfiguratingvm"></a>
 <p align="justify">
 </p>
 
-### 3.6.1 Password Policy <a name="X"></a>
+### 3.6.1 Password Policy <a name="passwordpolicy"></a>
 
-`sudo apt-get install libpam-pwquality` (install Password Quality Checking Library)
+- To install the password quality checking library:
+
+`sudo apt-get install libpam-pwquality`
 
 `sudo vim /etc/pam.d/common-password`
 
-Find this line `password		requisite		pam_deny.so (or pam_pwquakity.so retry=3)`
+- Find this line 
 
-Add this to the end of that line `minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=77enforce_for_root`
+`password		requisite		pam_deny.so (or pam_pwquakity.so retry=3)`
 
-Save and Exit Vim
+- Add this to the end of that line 
+
+`minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=77enforce_for_root`
+
+- Save and Exit Vim
 
 `sudo vim /etc/login.defs`
 
-Find this part `PASS_MAX_DAYS 9999 PASS_MIN_DAYS 0 PASS_WARN_AGE 7`
+- Find this part 
 
-Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
+`PASS_MAX_DAYS 9999 PASS_MIN_DAYS 0 PASS_WARN_AGE 7`
+
+- Change that part to 
+
+`PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
 
 `sudo reboot`
 
-### 3.6.2 Group <a name="X"></a>
+### 3.6.2 Group <a name="group"></a>
 
 `sudo groupadd user42`
 
@@ -508,7 +530,7 @@ Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
 
 `getent group`
 
-### 3.6.3 User (Group) <a name="X"></a>
+### 3.6.3 User (Group) <a name="user"></a>
 
 `cut -d: -f1 /etc/passwd`
 
@@ -526,19 +548,24 @@ Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
 
 `chage -l your_new_username`
 
-### 3.6.4 sudo.log <a name="X"></a>
+### 3.6.4 sudo.log <a name="sudolog"></a>
 
 `cd ~/../`
+
 `cd var/log`
+
 `mkdir sudo`
+
 `cd sudo && touch sudo.log`
+
 `cd ~/../`
 
-#### 3.6.4.1 Configuring Sudoers Group <a name="X"></a>
+#### 3.6.4.1 Configuring Sudoers Group <a name="sudoers"></a>
 
 `sudo nano /etc/sudoers`
 
-Now edit your sudoers file to look like the following by adding in all of the defaults in the image below -
+- Edit sudoers file to add this defaults:
+
 ```
 Defaults	env_reset
 
@@ -556,7 +583,8 @@ Defaults	log_input, log_output
 
 Defaults	requiretty
 ```
-### 3.6.5 Cron <a name="X"></a>
+
+### 3.6.5 Cron <a name="cron"></a>
 
 `apt-get install -y net-tools`
 
@@ -566,7 +594,7 @@ Defaults	requiretty
 
 `chmod 777 monitoring.sh`
 
-#### 3.6.5.1 Script <a name="X"></a>
+#### 3.6.6 Script <a name="script"></a>
 
 ```
 #!/bin/bash
@@ -656,20 +684,17 @@ ip=$(hostname -I) gets the IP address of the system and stores it in the $ip var
  
 ## 3.7 Signature.txt <a name="signature"></a>
 
-<p align="justify">
-Turn off VM
+- Turn off VM
 
-Open Terminal > cd
+- Open Terminal > cd
 
 `cd sgoinfre/students/<your_intra_username>/VirtualBox VMs`
 
-shasum VirtualBox.vdi
+- shasum VirtualBox.vdi
 
-Copy the output number and create a signature.txt.
+- Copy the output number and create a signature.txt.
 
-Submit the signature.txt.
-</p>
-</p>
+- Submit the signature.txt.
   
 # 4 COMMANDS <a name="commands"></a>
 <p align="justify">
@@ -688,19 +713,27 @@ Submit the signature.txt.
 
 `sudo usermod -aG groupname username`
 
-`sudo chage -l username` - check password expire rules
+- check password expire rules:
+
+`sudo chage -l username`
 
 `hostnamectl`
 
-`hostnamectl set-hostname new_hostname` - to change the current hostname
+- to change the current hostname:
 
-Restart your Virtual Machine.
+`hostnamectl set-hostname new_hostname`
 
-`sudo nano /etc/hosts` - change current hostname to new hostname
+- Restart your Virtual Machine.
+
+- Change current hostname to new hostname:
+
+`sudo nano /etc/hosts` 
 
 `lsblk to display the partitions`
 
-`dpkg -l | grep sudo – to show that sudo is installed`
+– To show that sudo is installed:
+
+`dpkg -l | grep sudo`
 
 `sudo ufw status numbered`
 
@@ -708,8 +741,11 @@ Restart your Virtual Machine.
 
 `sudo ufw delete rule number`
 
-`ssh your_user_id@127.0.0.1 -p 4242 - do this in terminal to show that SSH to port 4242 is working`
-</p>
+ - To show that SSH to port 4242 is working:
+ 
+`ssh your_user_id@127.0.0.1 -p 4242
+
+***
 
 # NEED
 
