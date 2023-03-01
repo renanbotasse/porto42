@@ -1,153 +1,6 @@
 # CIRCLE 1 - 1.2 BORN2BEROOT
 
-# NEED
-- Not connect using SSH as root (sudo gedit /etc/ssh/sshd_config)
-It is generally recommended to disable direct root login via SSH for security reasons. Instead, you can log in with a regular user account and then use "sudo" to execute administrative commands.
-
-To disable direct root login via SSH in Linux, you can follow these steps:
-
-Connect to your server using SSH with your regular user account.
-
-Open the "/etc/ssh/sshd_config" file using a text editor with administrative privileges. For example, you can use the following command to open the file with "sudo" and "nano":
-
-bash
-Copy code
-sudo nano /etc/ssh/sshd_config
-Find the line in the file that begins with "PermitRootLogin". If the value is set to "yes", change it to "no". For example:
-
-perl
-Copy code
-PermitRootLogin no
-Save the changes to the file and exit the text editor.
-
-Restart the SSH service to apply the changes. For example, you can use the following command to restart the service:
-
-Copy code
-sudo service ssh restart
-After completing these steps, you will no longer be able to connect to the server directly as the root user via SSH. Instead, you will need to log in with a regular user account and use "sudo" to execute administrative commands. This can help improve the security of your system by limiting the potential attack surface.
-
-- Modify hostname (/etc/pam.d/common-password)
-The file "/etc/pam.d/common-password" in Linux contains configuration for the Pluggable Authentication Modules (PAM) system, which is used to authenticate users and manage their passwords. The file is typically edited by the system administrator or root user.
-
-To modify the hostname in the "/etc/pam.d/common-password" file, you will need to use a text editor with root privileges, such as "nano" or "vi". Here are the steps to do so:
-
-Open a terminal window and log in as the root user or use the "sudo" command to gain root privileges.
-
-Use the text editor of your choice to open the "/etc/pam.d/common-password" file. For example, you could use the following command to open the file with "nano":
-
-bash
-Copy code
-sudo nano /etc/pam.d/common-password
-Use the editor to modify the hostname setting in the file. The hostname is typically set in a line that begins with "password requisite pam_cracklib.so". You can modify the line to include the desired hostname, such as:
-
-ruby
-Copy code
-password requisite pam_cracklib.so retry=3 minlen=8 difok=3 ucredit=-1 lcredit=-2 dcredit=-1 ocredit=-1 reject_username enforce_for_root maxrepeat=3 reject_common_words enforce_for_users hostname=example.com
-Save the changes to the file and exit the text editor.
-
-After modifying the "/etc/pam.d/common-password" file, you may need to restart the PAM service or reboot the system for the changes to take effect. It's also a good idea to test the changes by attempting to change a user's password to ensure that the hostname is being properly set.
-
-- sudo Autentication 3 times and Error Msg
-
-- sudo action archived
-When you use "sudo" to execute a command, the command and its output are not automatically archived or saved by default. However, you can manually redirect the output of a command to a file for archiving or further processing.
-
-For example, you could use the following command to save the output of a "sudo" command to a file:
-
-lua
-Copy code
-sudo command-name > output-file.txt
-This will execute "command-name" with administrative privileges and redirect the output to "output-file.txt". You can then use the contents of "output-file.txt" for archiving or further analysis.
-
-- TTY1
-Refers to the first virtual terminal, which is a text-based console that allows users to interact with the system through a command-line interface. When you start up Debian, the system will usually automatically open a graphical interface, such as GNOME or KDE. However, you can switch to the tty1 console by using the keyboard shortcut "Ctrl+Alt+F1".
-
-Once you switch to tty1, you will be presented with a login prompt where you can enter your username and password to log in to the system. After logging in, you will have access to the command-line interface, where you can use commands to interact with the system, run programs, and manage files and directories.
-
-The tty1 console can be useful for troubleshooting system issues, running scripts or programs that don't require a graphical interface, or for users who prefer the command-line interface. Additionally, switching to other tty consoles (such as tty2, tty3, etc.) can be helpful for multitasking or running multiple sessions simultaneously.
-
-- 10/10 min script
-
-- sudo restrict
-To restrict the paths that can be used by sudo, you can modify the sudoers file using the visudo command. Here are the steps to implement the path restriction:
-
-Open the sudoers file using the visudo command:
-Copy code
-sudo visudo
-Scroll down to the line that starts with "Defaults secure_path". If this line is commented out, remove the "#" symbol at the beginning of the line to uncomment it. If the line is not present, add it to the end of the file.
-
-Modify the secure_path variable to include the paths that you want to allow for sudo. For example, to allow the paths "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin", modify the line to look like this:
-
-python
-Copy code
-Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
-Save the changes to the sudoers file and exit the text editor.
-After making these changes, the paths that are allowed for sudo will be restricted to the ones specified in the secure_path variable. This can help improve the security of your system by limiting the commands that can be run with elevated privileges.
-
-
-- password
-To set up a strong password policy, you can follow these steps:
-
-Edit the password aging configuration file /etc/login.defs and set the following parameters:
-Copy code
-PASS_MAX_DAYS 30
-PASS_MIN_DAYS 2
-PASS_WARN_AGE 7
-This will ensure that users are forced to change their passwords every 30 days, cannot change their passwords within 2 days of the last change, and receive a warning message 7 days before their password expires.
-
-Install the cracklib-runtime package to enable password complexity checks.
-
-Edit the PAM configuration file /etc/pam.d/common-password and add or modify the following line:
-
-ruby
-Copy code
-password requisite pam_cracklib.so retry=3 minlen=10 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1 difok=3
-This will enforce password complexity by requiring the password to be at least 10 characters long, contain an uppercase letter, a lowercase letter, and a number, and not contain more than 3 consecutive identical characters.
-
-To prevent users from using their username as part of their password, you can edit the PAM configuration file /etc/pam.d/common-password and add the following line:
-Copy code
-password requisite pam_deny.so userdnam
-To enforce the rule that the password must have at least 7 characters that are not part of the former password, you can install the libpam-pwquality package and edit the PAM configuration file /etc/pam.d/common-password to include the following line:
-ruby
-Copy code
-password requisite pam_pwquality.so retry=3 minlen=7 difok=7
-This will ensure that the new password has at least 7 characters that are not part of the previous password.
-
-Finally, make sure to configure SSH properly by disabling root login and configuring a strong password for the new user account that you create. You can also enable firewall to ensure secure access
-
-- sudo error autentication
-To implement the requirements for a strong sudo configuration, you can follow the steps below:
-
-Open the sudo configuration file using the command sudo visudo
-
-Add the following line to set the maximum number of password attempts to 3:
-
-Defaults passwd_tries=3
-
-Add the following line to display a custom error message:
-
-Defaults badpass_message="Custom error message"
-
-Replace "Custom error message" with the message of your choice.
-
-Add the following line to enable sudo logging:
-
-Defaults logfile="/var/log/sudo.log"
-
-Create the directory to store the sudo log file:
-
-sudo mkdir /var/log/sudo
-
-Change the ownership and permissions of the sudo log directory:
-
-sudo chown root:adm /var/log/sudo
-
-sudo chmod 750 /var/log/sudo
-
-Save and exit the sudo configuration file.
-
-After completing these steps, the sudo group will be configured to limit password attempts, display custom error messages, and log all sudo activities to the specified log file.
-1. TASK
+1. [TASK](#1.TASK)
 
 1.1 Introduction
 
@@ -864,3 +717,152 @@ Restart your Virtual Machine.
 
 `ssh your_user_id@127.0.0.1 -p 4242 - do this in terminal to show that SSH to port 4242 is working`
 </p>
+
+# NEED
+
+Not connect using SSH as root (sudo gedit /etc/ssh/sshd_config)
+It is generally recommended to disable direct root login via SSH for security reasons. Instead, you can log in with a regular user account and then use "sudo" to execute administrative commands.
+
+To disable direct root login via SSH in Linux, you can follow these steps:
+
+Connect to your server using SSH with your regular user account.
+
+Open the "/etc/ssh/sshd_config" file using a text editor with administrative privileges. For example, you can use the following command to open the file with "sudo" and "nano":
+
+bash
+Copy code
+sudo nano /etc/ssh/sshd_config
+Find the line in the file that begins with "PermitRootLogin". If the value is set to "yes", change it to "no". For example:
+
+perl
+Copy code
+PermitRootLogin no
+Save the changes to the file and exit the text editor.
+
+Restart the SSH service to apply the changes. For example, you can use the following command to restart the service:
+
+Copy code
+sudo service ssh restart
+After completing these steps, you will no longer be able to connect to the server directly as the root user via SSH. Instead, you will need to log in with a regular user account and use "sudo" to execute administrative commands. This can help improve the security of your system by limiting the potential attack surface.
+
+- Modify hostname (/etc/pam.d/common-password)
+The file "/etc/pam.d/common-password" in Linux contains configuration for the Pluggable Authentication Modules (PAM) system, which is used to authenticate users and manage their passwords. The file is typically edited by the system administrator or root user.
+
+To modify the hostname in the "/etc/pam.d/common-password" file, you will need to use a text editor with root privileges, such as "nano" or "vi". Here are the steps to do so:
+
+Open a terminal window and log in as the root user or use the "sudo" command to gain root privileges.
+
+Use the text editor of your choice to open the "/etc/pam.d/common-password" file. For example, you could use the following command to open the file with "nano":
+
+bash
+Copy code
+sudo nano /etc/pam.d/common-password
+Use the editor to modify the hostname setting in the file. The hostname is typically set in a line that begins with "password requisite pam_cracklib.so". You can modify the line to include the desired hostname, such as:
+
+ruby
+Copy code
+password requisite pam_cracklib.so retry=3 minlen=8 difok=3 ucredit=-1 lcredit=-2 dcredit=-1 ocredit=-1 reject_username enforce_for_root maxrepeat=3 reject_common_words enforce_for_users hostname=example.com
+Save the changes to the file and exit the text editor.
+
+After modifying the "/etc/pam.d/common-password" file, you may need to restart the PAM service or reboot the system for the changes to take effect. It's also a good idea to test the changes by attempting to change a user's password to ensure that the hostname is being properly set.
+
+- sudo Autentication 3 times and Error Msg
+
+- sudo action archived
+When you use "sudo" to execute a command, the command and its output are not automatically archived or saved by default. However, you can manually redirect the output of a command to a file for archiving or further processing.
+
+For example, you could use the following command to save the output of a "sudo" command to a file:
+
+lua
+Copy code
+sudo command-name > output-file.txt
+This will execute "command-name" with administrative privileges and redirect the output to "output-file.txt". You can then use the contents of "output-file.txt" for archiving or further analysis.
+
+- TTY1
+Refers to the first virtual terminal, which is a text-based console that allows users to interact with the system through a command-line interface. When you start up Debian, the system will usually automatically open a graphical interface, such as GNOME or KDE. However, you can switch to the tty1 console by using the keyboard shortcut "Ctrl+Alt+F1".
+
+Once you switch to tty1, you will be presented with a login prompt where you can enter your username and password to log in to the system. After logging in, you will have access to the command-line interface, where you can use commands to interact with the system, run programs, and manage files and directories.
+
+The tty1 console can be useful for troubleshooting system issues, running scripts or programs that don't require a graphical interface, or for users who prefer the command-line interface. Additionally, switching to other tty consoles (such as tty2, tty3, etc.) can be helpful for multitasking or running multiple sessions simultaneously.
+
+- 10/10 min script
+
+- sudo restrict
+To restrict the paths that can be used by sudo, you can modify the sudoers file using the visudo command. Here are the steps to implement the path restriction:
+
+Open the sudoers file using the visudo command:
+Copy code
+sudo visudo
+Scroll down to the line that starts with "Defaults secure_path". If this line is commented out, remove the "#" symbol at the beginning of the line to uncomment it. If the line is not present, add it to the end of the file.
+
+Modify the secure_path variable to include the paths that you want to allow for sudo. For example, to allow the paths "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin", modify the line to look like this:
+
+python
+Copy code
+Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+Save the changes to the sudoers file and exit the text editor.
+After making these changes, the paths that are allowed for sudo will be restricted to the ones specified in the secure_path variable. This can help improve the security of your system by limiting the commands that can be run with elevated privileges.
+
+
+- password
+To set up a strong password policy, you can follow these steps:
+
+Edit the password aging configuration file /etc/login.defs and set the following parameters:
+Copy code
+PASS_MAX_DAYS 30
+PASS_MIN_DAYS 2
+PASS_WARN_AGE 7
+This will ensure that users are forced to change their passwords every 30 days, cannot change their passwords within 2 days of the last change, and receive a warning message 7 days before their password expires.
+
+Install the cracklib-runtime package to enable password complexity checks.
+
+Edit the PAM configuration file /etc/pam.d/common-password and add or modify the following line:
+
+ruby
+Copy code
+password requisite pam_cracklib.so retry=3 minlen=10 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1 difok=3
+This will enforce password complexity by requiring the password to be at least 10 characters long, contain an uppercase letter, a lowercase letter, and a number, and not contain more than 3 consecutive identical characters.
+
+To prevent users from using their username as part of their password, you can edit the PAM configuration file /etc/pam.d/common-password and add the following line:
+Copy code
+password requisite pam_deny.so userdnam
+To enforce the rule that the password must have at least 7 characters that are not part of the former password, you can install the libpam-pwquality package and edit the PAM configuration file /etc/pam.d/common-password to include the following line:
+ruby
+Copy code
+password requisite pam_pwquality.so retry=3 minlen=7 difok=7
+This will ensure that the new password has at least 7 characters that are not part of the previous password.
+
+Finally, make sure to configure SSH properly by disabling root login and configuring a strong password for the new user account that you create. You can also enable firewall to ensure secure access
+
+- sudo error autentication
+To implement the requirements for a strong sudo configuration, you can follow the steps below:
+
+Open the sudo configuration file using the command sudo visudo
+
+Add the following line to set the maximum number of password attempts to 3:
+
+Defaults passwd_tries=3
+
+Add the following line to display a custom error message:
+
+Defaults badpass_message="Custom error message"
+
+Replace "Custom error message" with the message of your choice.
+
+Add the following line to enable sudo logging:
+
+Defaults logfile="/var/log/sudo.log"
+
+Create the directory to store the sudo log file:
+
+sudo mkdir /var/log/sudo
+
+Change the ownership and permissions of the sudo log directory:
+
+sudo chown root:adm /var/log/sudo
+
+sudo chmod 750 /var/log/sudo
+
+Save and exit the sudo configuration file.
+
+After completing these steps, the sudo group will be configured to limit password attempts, display custom error messages, and log all sudo activities to the specified log file.
