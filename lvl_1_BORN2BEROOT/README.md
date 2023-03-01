@@ -623,13 +623,17 @@ wall "	#Architecture: $arc
 	#Network: IP $ip ($mac)
 	#Sudo: $cmds cmd"
  ```
+
 <p align="justify">
+
 The first line starts with a shebang #!/bin/bash that tells the system to run the script using the Bash shell.
 
 The script uses various commands to collect system information and stores the output of each command in a variable for further processing. For example:
+
 </p>
 
 <p align="justify">
+
 - `arc=$(uname -a)` gets the system's architecture information and stores it in the `$arc` variable.
 
 - `pcpu=$(grep "physical id" /proc/cpuinfo | sort | uniq | wc -l)` gets the number of physical CPUs on the system and stores it in the `$pcpu` variable.
@@ -659,9 +663,11 @@ The script uses various commands to collect system information and stores the ou
 - `ulog=$(users | wc -w)` gets the number of logged-in users on the system and stores it in the `$ulog` variable.
 
 - `ip=$(hostname -I)` gets the IP address of the system and stores it in the `$ip` variable.
+
 </p>
 
 <p align="justify">
+
 - On Terminal:
 
 `ssh your_host_name42@127.0.0.1 -p 4242`
@@ -755,7 +761,7 @@ The script uses various commands to collect system information and stores the ou
 
 `sudo ufw delete rule number`
 
- - To show that SSH to port 4242 is working:
+- To show that SSH to port 4242 is working:
  
 `ssh your_user_id@127.0.0.1 -p 4242
 
