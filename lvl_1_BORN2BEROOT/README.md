@@ -1,5 +1,7 @@
 # CIRCLE 1 - 1.2 BORN2BEROOT
 
+***
+
 1. [TASK](#task)
 	- 1.1. [Introduction](#introduction)
 	- 1.2. [Mandatory](#mandatory)
@@ -27,6 +29,7 @@
 	- 3.7. [Signature.txt](#signature)
 4. [COMMANDS](#commands)
 
+***
 
 # 1.TASK <a name="task"></a>
 ## 1.1 Introduction<a name="introduction"></a>
