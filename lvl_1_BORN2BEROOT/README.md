@@ -23,11 +23,11 @@
 	- 3.1. [Downloading OS and VM](#downloadingosandvm) ⏺️
 	- 3.2. [Installing VM](#installingvm) ⏺️
 	- 3.3. [Installing OS](#installingos) ⏺️
-	- 3.4. [Configurating VM](#configuratingvm)
-		- 3.4.1 [sudo](#sudo3)
-		- 3.4.2 [GIT and VIM](#gitandvim3)
-		- 3.4.3 [SSH](#ssh3)
-		- 3.4.4 [UFW](#ufw3)
+	- 3.4. [Configurating VM](#configuratingvm) ✅
+		- 3.4.1 [sudo](#sudo3) ✅
+		- 3.4.2 [GIT and VIM](#gitandvim3) ✅
+		- 3.4.3 [SSH](#ssh3) ✅
+		- 3.4.4 [UFW](#ufw3) ✅
 	- 3.5. [Connecting to SSH](#connectingtossh)
 	- 3.6. [Continue Configurating VM](#continueconfiguratingvm)
 	- 3.7. [Signature.txt](#signature)
@@ -396,11 +396,8 @@ First we have to download the OS, Debian. After that we have to download the Vir
 - Continue
 
 ## 3.4 Configurating VM <a name="configuratingvm"></a>
-<p align="justify">
- </p> 
  
 ### 3.4.1 sudo <a name="sudo3"></a>
-<p align="justify">
  
 `su -`
 
@@ -415,18 +412,14 @@ First we have to download the OS, Debian. After that we have to download the Vir
 `sudo visudo`
 
 `your_username  	ALL=(ALL) ALL`
-</p>
 
 ### 3.4.2 GIT and VIM <a name="gitandvim3"></a>
-<p align="justify">
  
 `apt-get install git -y`
 
 `git --version`
-</p>
 
 ### 3.4.3 SSH <a name="ssh3"></a>
-<p align="justify">
  
 `sudo apt install openssh-server`
 
@@ -434,16 +427,15 @@ First we have to download the OS, Debian. After that we have to download the Vir
 
 `sudo vim /etc/ssh/sshd_config`
 
-Find the line #Port22
+- Find the line #Port22
 
-Change to Port 4242 without the #
+- Change to Port 4242 without the #
 
-Save and Exit Vim
+- Save and Exit Vim
 
 `sudo grep Port /etc/ssh/sshd_config`
 
 `sudo service ssh restart`
-</p>
 
 ### 3.4.4 UFW <a name="ufw3"></a>
 <p align="justify">
