@@ -157,16 +157,19 @@ You also can create an image of any LV, and with that you can revert the origina
 </p>
 
 ## 2.4 AppArmor <a name="apparmor"></a>
+
 <p align="justify">
 App is a Mandatory Access Control (MAC). But what is a Mandatory Access Control? 
 MAC is a method of limiting access to resources based on the sensitivity of the information.
 You have to define the security label of your resource, this label goes from 0 to any level you need. This works because of the hierarchical classification of the resources, like an inverted pyramid. And you also can slice the levels, some information can be used by Group A or Group B.
 Users can access only the information in a resource to which their security labels entitle them. If the user's security label does not have enough authority, the user cannot access the information in the resource.
+</p>
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/101360239/217017358-0f1a59a0-e1c7-4181-a6bf-ccdd45add915.png" width="600" height="300">
 </p>
 
+<p align="center">
 So, AppArmor is a system of MAC for Linux, used to confine programs and limited resources from Users. 
 AppArmor is so good because the confinement is provided via boot, and you can bind access control to programs rather than to users.
 There are two profile modes: enforcement and complain. 
