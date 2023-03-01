@@ -1,6 +1,6 @@
 # CIRCLE 1 - 1.2 BORN2BEROOT
 
-1. [TASK](#1.TASK)
+1. [TASK](1.TASK)
 
 1.1 Introduction
 
