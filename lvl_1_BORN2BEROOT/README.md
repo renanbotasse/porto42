@@ -20,8 +20,8 @@
 	- 2.11. [Rocky or Debian](#rockyordebian) ✅
 	- 2.12. [TTY](#tty) ✅
 3. [WALKTHROUGH](#walkthrough)
-	- 3.1. [Downloading OS and VM](#downloadingosandvm)
-	- 3.2. [Installing VM](#installingvm)
+	- 3.1. [Downloading OS and VM](#downloadingosandvm) ⏺️
+	- 3.2. [Installing VM](#installingvm) ⏺️
 	- 3.3. [Installing OS](#installingos)
 	- 3.4. [Configurating VM](#configuratingvm)
 	- 3.5. [Connecting to SSH](#connectingtossh)
@@ -308,92 +308,88 @@ First we have to download the OS, Debian. After that we have to download the Vir
 </p>
 
 ## 3.2 Installing VM <a name="installingvm"></a>
-<p align="justify">
-Click on New
 
-Choose the Machine Folder > Continue
+- Click on New
 
-Set Memory Size as 1024MB > Continue
+- Choose the Machine Folder > Continue
 
-Click on Create a Virtual Hard Disk Now > Create
+- Set Memory Size as 1024MB > Continue
 
-Click in VDI (VirtualBox Disk Image) > Continue
+- Click on Create a Virtual Hard Disk Now > Create
 
-Click on Dynamically Allocated > Continue
+- Click in VDI (VirtualBox Disk Image) > Continue
 
-Set the HD as 8 GB > Continue
+- Click on Dynamically Allocated > Continue
 
-Click on Settings > Click on Storage
+- Set the HD as 8 GB > Continue
 
-Click on Empty from Controller: IDE > Click on Optical Drive > Click on Choose a disk file...
+- Click on Settings > Click on Storage
 
-Choose the OS.iso file
+- Click on Empty from Controller: IDE > Click on Optical Drive > Click on Choose a disk file...
 
-Click on Virtual Machine > Click OK
+- Choose the OS.iso file
 
-Click on Start
+- Click on Virtual Machine > Click OK
 
-</p>
+- Click on Start
 
 ## 3.3 Installing OS <a name="installingos"></a>
-<p align="justify">
-Install > Enter
 
-Choose the language > Enter
+- Install > Enter
 
-Choose the contry > Enter
+- Choose the language > Enter
 
-Choose the keyboard > Enter
+- Choose the contry > Enter
 
-Create a hostname (loguin42) > Continue
+- Choose the keyboard > Enter
 
-Ignore the Domain name > Continue
+- Create a hostname (loguin42) > Continue
 
-Create a hostname password > Continue
+- Ignore the Domain name > Continue
 
-Create a new user > Continue
+- Create a hostname password > Continue
 
+- Create a new user > Continue
 
-Create a new user password > Continue
+- Create a new user password > Continue
 
-Choose the Timezone > Enter
+- Choose the Timezone > Enter
 
-Guided - use entire disk and set up encrypted LVM > Enter
+- Guided - use entire disk and set up encrypted LVM > Enter
 
-Select the Disk > Enter
+- Select the Disk > Enter
 
-Separate /home, /var, and /tmp paritions > Enter
+- Separate /home, /var, and /tmp paritions > Enter
 
-YES > Enter
+- YES > Enter
 
-Create a encryption passphrase > Continue
+- Create a encryption passphrase > Continue
 
-Re-enter passphrase > Continue
+- Re-enter passphrase > Continue
 
-Type MAX > Continue
+- Type MAX > Continue
 
-Finish partitioning and write changes to disk > Enter
+- Finish partitioning and write changes to disk > Enter
 
-YES > Enter
+- YES > Enter
 
-NO > Enter 
+- NO > Enter 
 
-Choose the contry > Enter
+- Choose the contry > Enter
 
-deb.debian.org. > Enter
+- deb.debian.org. > Enter
 
-Ignore HTTP proxy information > Continue
+- Ignore HTTP proxy information > Continue
 
-NO > Enter
+- NO > Enter
 
-Deselect (use SPACE KEY) SSH server and standard system utilities > Enter > Continue
+- Deselect (use SPACE KEY) SSH server and standard system utilities > Enter > Continue
 
-YES > Enter
+- YES > Enter
 
-`/dev/sda` > Enter
+- /dev/sda > Enter
 
-Continue
-</p>
+- Continue
 
 ## 3.4 Configurating VM <a name="configuratingvm"></a>
 <p align="justify">
