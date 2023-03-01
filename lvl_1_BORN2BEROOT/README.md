@@ -1,67 +1,60 @@
 # CIRCLE 1 - 1.2 BORN2BEROOT
 
-1. [TASK](1.TASK)
+# Table of contents
+1. [TASK](#task)	
+1.1. [Introduction](#introduction)
 
-1.1 Introduction
+1.2. [Mandatory](#mandatory)
 
-1.2 Mandatory
+1.3. [Bonus](#bonus)
 
-1.3 Bonus 
+2. [PROJECT CONCEPT](#projectconcept)
 
-2. PROJECT CONCEPT
+2.1. [Virtual Machine](#virtualmachine)
 
-2.1 Virtual Machine
+2.2. [How VM work](#howvmwork)
 
-2.2 How VM work
+2.3. [LVM](#lvm)
 
-2.3 LVM
+2.4. [AppArmor](#apparmor)
 
-2.4 AppArmor
+2.5. [Apt or Aptitude](#aptoraptitude)
 
-2.5 Apt or Aptitude
+2.6. [SSH](#ssh)
 
-2.6 SSH
+2.7. [UFW with SSH](#ufwwithssh)
 
-2.7 UFW with SSH
+2.8. [Cron and Wall](#cronandwall)
 
-2.8 Cron and Wall
+2.9. [Sudo](#sudo)
 
-2.9 Sudo
+2.10. [Script](#script)
 
-2.10 Script
+2.11. [Rocky or Debian](#rockyordebian)
 
-2.11 Rocky or Debian
+2.12. [TTY](#tty)
 
-2.12 TTY
+3. [WALKTHROUGH](#walkthrough) 
 
-3. WALKTHROUGH 
+3.1. [Downloading OS and VM](#downloadingosandvm)
 
-3.1 Downloading OS and VM
+3.2. [Installing VM](#installingvm)
 
-3.2 Installing VM
+3.3. [Installing OS](#installingos)
 
-3.3 Installing OS
-
-3. WALKTHROUGH 
-
-3.1 Downloading OS and VM
-
-3.2 Installing VM
-
-3.3 Installing OS
-
-3.4 Configurating VM
-
-3.5 Connecting to SSH
-
-3.6 Continue Configurating VM
-
-3.7 Signature.txt
-
-4. COMMANDS
+3.4. [Configurating VM](#configuratingvm)
 
 
-# 1.TASK
+3.5. [Connecting to SSH](#connectingtossh)
+
+3.6. [Continue Configurating VM](#continueconfiguratingvm)
+
+3.7. [Signature.txt](#signature)
+
+4. [COMMANDS](#commands)
+
+
+# 1.TASK <a name="task"></a>
 ## 1.1 Introduction
 <p align="justify">
 The purpose of this project is to familiarize you with virtualization, where you will follow step-by-step instructions to create your first virtual machine using VirtualBox or UTM if VirtualBox is unavailable. By the end of this project, you will have the ability to set up your operating system with stringent guidelines in place.
