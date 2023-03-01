@@ -36,7 +36,7 @@
 		- 3.6.4 [sudo.log](#sudolog) ✅
 			- 3.6.4.1 [Configuring sudoers group](#sudoers) ✅
 		- 3.6.5 [cron](#cron) ✅
-		- 3.6.6 [Script](#script)❗️
+		- 3.6.6 [Script](#script2)❗️
 	- 3.7. [Signature.txt](#signature) ✅
 4. [COMMANDS](#commands)❗️
 
@@ -310,8 +310,7 @@ Teletype refers to a physical or virtual terminal device used to interact with t
 ***
 
 # 3. WALKTHROUGH <a name="walkthrough"></a>
-<p align="justify">
-  </p>
+
   
 ## 3.1 Downloading OS and VM <a name="downloadingosandvm"></a>
 <p align="justify">
@@ -590,7 +589,7 @@ Defaults	requiretty
 
 `chmod 777 monitoring.sh`
 
-### 3.6.6 Script <a name="script"></a>
+### 3.6.6 Script <a name="script2"></a>
 
 ```
 #!/bin/bash
@@ -624,63 +623,70 @@ wall "	#Architecture: $arc
 	#Network: IP $ip ($mac)
 	#Sudo: $cmds cmd"
  ```
+<p align="justify">
+The first line starts with a shebang #!/bin/bash that tells the system to run the script using the Bash shell.
 
-- The first line starts with a shebang #!/bin/bash that tells the system to run the script using the Bash shell.
+The script uses various commands to collect system information and stores the output of each command in a variable for further processing. For example:
+</p>
 
-- The script uses various commands to collect system information and stores the output of each command in a variable for further processing. For example:
+<p align="justify">
+- `arc=$(uname -a)` gets the system's architecture information and stores it in the `$arc` variable.
 
-- `arc=$(uname -a)` gets the system's architecture information and stores it in the $arc variable.
+- `pcpu=$(grep "physical id" /proc/cpuinfo | sort | uniq | wc -l)` gets the number of physical CPUs on the system and stores it in the `$pcpu` variable.
 
-- `pcpu=$(grep "physical id" /proc/cpuinfo | sort | uniq | wc -l)` gets the number of physical CPUs on the system and stores it in the $pcpu variable.
+- `vcpu=$(grep "^processor" /proc/cpuinfo | wc -l)` gets the number of virtual CPUs on the system and stores it in the `$vcpu` variable.
 
-- `vcpu=$(grep "^processor" /proc/cpuinfo | wc -l)` gets the number of virtual CPUs on the system and stores it in the $vcpu variable.
+- `fram=$(free -m | awk '$1 == "Mem:" {print $2}')` gets the total amount of system memory and stores it in the `$fram` variable.
 
-- `fram=$(free -m | awk '$1 == "Mem:" {print $2}')` gets the total amount of system memory and stores it in the $fram variable.
+- `uram=$(free -m | awk '$1 == "Mem:" {print $3}')` gets the used amount of system memory and stores it in the `$uram` variable.
 
-- `uram=$(free -m | awk '$1 == "Mem:" {print $3}')` gets the used amount of system memory and stores it in the $uram variable.
+- `pram=$(free | awk '$1 == "Mem:" {printf("%.2f"), $3/$2*100}')` calculates the percentage of memory used and stores it in the `$pram` variable.
 
-- `pram=$(free | awk '$1 == "Mem:" {printf("%.2f"), $3/$2*100}')` calculates the percentage of memory used and stores it in the $pram variable.
+- `fdisk=$(df -BG | grep '^/dev/' | grep -v '/boot$' | awk '{ft += $2} END {print ft}')` gets the total disk space available on the system and stores it in the `$fdisk` variable.
 
-- `fdisk=$(df -BG | grep '^/dev/' | grep -v '/boot$' | awk '{ft += $2} END {print ft}')` gets the total disk space available on the system and stores it in the $fdisk variable.
+- `udisk=$(df -BM | grep '^/dev/' | grep -v '/boot$' | awk '{ut += $3} END {print ut}')` gets the used disk space on the system and stores it in the `$udisk` variable.
 
-- `udisk=$(df -BM | grep '^/dev/' | grep -v '/boot$' | awk '{ut += $3} END {print ut}')` gets the used disk space on the system and stores it in the $udisk variable.
+- `pdisk=$(df -BM | grep '^/dev/' | grep -v '/boot$' | awk '{ut += $3} {ft+= $2} END {printf("%d"), ut/ft*100}')` calculates the percentage of disk space used and stores it in the `$pdisk` variable.
 
-- `pdisk=$(df -BM | grep '^/dev/' | grep -v '/boot$' | awk '{ut += $3} {ft+= $2} END {printf("%d"), ut/ft*100}')` calculates the percentage of disk space used and stores it in the $pdisk variable.
+- `cpul=$(top -bn1 | grep '^%Cpu' | cut -c 9- | xargs | awk '{printf("%.1f%%"), $1 + $3}')` gets the CPU usage and stores it in the `$cpul` variable.
 
-- `cpul=$(top -bn1 | grep '^%Cpu' | cut -c 9- | xargs | awk '{printf("%.1f%%"), $1 + $3}')` gets the CPU usage and stores it in the $cpul variable.
+- `lb=$(who -b | awk '$1 == "system" {print $3 " " $4}')` gets the date and time when the system was last booted and stores it in the `$lb` variable.
 
-- `lb=$(who -b | awk '$1 == "system" {print $3 " " $4}')` gets the date and time when the system was last booted and stores it in the $lb variable.
+- `lvmu=$(if [ $(lsblk | grep "lvm" | wc -l) -eq 0 ];` then echo no; else echo yes; fi) checks if LVM is in use and stores the result in the `$lvmu` variable.
 
-- `lvmu=$(if [ $(lsblk | grep "lvm" | wc -l) -eq 0 ];` then echo no; else echo yes; fi) checks if LVM is in use and stores the result in the $lvmu variable.
+- `ctcp=$(ss -neopt state established | wc -l)` gets the number of established TCP connections on the system and stores it in the `$ctcp` variable.
 
-- `ctcp=$(ss -neopt state established | wc -l)` gets the number of established TCP connections on the system and stores it in the $ctcp variable.
+- `ulog=$(users | wc -w)` gets the number of logged-in users on the system and stores it in the `$ulog` variable.
 
-- `ulog=$(users | wc -w)` gets the number of logged-in users on the system and stores it in the $ulog variable.
+- `ip=$(hostname -I)` gets the IP address of the system and stores it in the `$ip` variable.
+</p>
 
-- `ip=$(hostname -I)` gets the IP address of the system and stores it in the $ip variable.
+<p align="justify">
+- On Terminal:
 
-
- Terminal2 - `ssh your_host_name42@127.0.0.1 -p 4242`
+`ssh your_host_name42@127.0.0.1 -p 4242`
  
  `cd /usr/local/bin.`
  
  `nano monitoring.sh`
  
- Save and Exit your monitoring.sh
+ - Save and Exit your `monitoring.sh`
  
- Then type exit to exit the iTerm SSH Login.
+ - Then type exit (exit the SSH Login).
  
- Then go back to your Virtual Machine (not iTerm) and continue on with the steps below.
+ - Go back to VM and continue:
  
  `sudo visudo`
  
- Add in this line `your_username ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh under where its written %sudo ALL=(ALL:ALL) ALL`
+ - Under the `your_username ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh` write:
  
- It should look like this
+ `%sudo ALL=(ALL:ALL) ALL`
  
- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ - It should look like this:
  
- exit and save
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ 
+- exit and save
  
  `sudo reboot`
  
