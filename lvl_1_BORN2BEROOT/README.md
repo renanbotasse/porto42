@@ -1,6 +1,5 @@
 # CIRCLE 1 - 1.2 BORN2BEROOT
 
-# Table of contents
 1. [TASK](#task)
 	- 1.1. [Introduction](#introduction)
 	- 1.2. [Mandatory](#mandatory)
@@ -30,12 +29,12 @@
 
 
 # 1.TASK <a name="task"></a>
-## 1.1 Introduction
+## 1.1 Introduction<a name="introduction"></a>
 <p align="justify">
 The purpose of this project is to familiarize you with virtualization, where you will follow step-by-step instructions to create your first virtual machine using VirtualBox or UTM if VirtualBox is unavailable. By the end of this project, you will have the ability to set up your operating system with stringent guidelines in place.
  </p>
  
-## 1.2 Mandatory 
+## 1.2 Mandatory <a name="mandatory"></a>
 <p align="justify">
 Although the project allows you to choose between Debian and Rocky, it is recommended that new system administrators opt for Debian. For this reason, we have selected Debian as the operating system for this project.
 
@@ -99,7 +98,7 @@ Below are two commands you can use to check some of the subject’s requirements
 <img src="https://user-images.githubusercontent.com/101360239/218792834-86ad471c-fa11-40c3-965c-414cf904f4cd.png" width="600" height="300">
 </p>
 
-## 1.3 Bonus
+## 1.3 Bonus <a name="bonus"></a>
 <p align="justify">
 Set up partitions correctly so we get a structure similar to the one below:
 
@@ -112,9 +111,9 @@ Set up a functional WordPress website with the following services: lighttpd, Mar
 Set up a service of choice that you think is useful (NGINX / Apache2 excluded!).
 </p>
 
-# 2. PROJECT CONCEPT 
+# 2. PROJECT CONCEPT <a name="projectconcept"></a>
 
-## 2.1 Virtual Machine
+## 2.1 Virtual Machine <a name="virtualmachine"></a>
 <p align="justify">
 Virtual Machine (VM), is equal to a physical computer. It has CPU, RAM, HD and (usually) can connect to the internet. The only difference is VM work like a software computer, existing only as a code, running inside a physical server. You can have inside your computer a VM, you can run different operating systems (Linux/MAC/Windows), use a big server (like Azure) or your won computer. 
 We named it "Virtual" because is a virtual version of a computer. Perhaps virtual, it has a dedicated amount of CPU, RAM and HD, "borrowed" from a physical host computer, normally a cloud provider's data center.
@@ -124,7 +123,7 @@ We named it "Virtual" because is a virtual version of a computer. Perhaps virtua
 </p>
 </p>
 
-## 2.2 How VM work
+## 2.2 How VM work <a name="howvmwork"></a>
 <p align="justify">
 In minimal explanation, VM is a computer file. It is an image that behaves like an actual computer. 
 You can run is a window "separate from the computer" or function as the user's entire computer
@@ -135,7 +134,7 @@ To be more clear one of the strongest points of VM is it is partitioned from the
 </p>
 </p>
 
-## 2.3 LVM
+## 2.3 LVM <a name="lvm"></a>
 <p align="justify">
 LVM is a form of storage virtualization that offers system administrators a more flexible approach to managing disk storage, this tool gives you the power to allocate disks, create, resize, delete and mirror your HD.
 
@@ -151,7 +150,7 @@ To be clear, if you have more than one HD, with the LVM you can extend "the size
 You also can create an image of any LV, and with that you can revert the original LV at a later time. This is very handy for backups.
 </p>
 
-## 2.4 AppArmor
+## 2.4 AppArmor <a name="apparmor"></a>
 <p align="justify">
 App is a Mandatory Access Control (MAC). But what is a Mandatory Access Control? 
 MAC is a method of limiting access to resources based on the sensitivity of the information.
@@ -170,7 +169,7 @@ Profiles in complain mode will not enforce policy but instead report policy viol
 The big difference from other MAC systems on Linux is the possibility of mixing enforcement and complain profiles.
 </p>
 
-## 2.5 Apt or Aptitude
+## 2.5 Apt or Aptitude <a name="aptoraptitude"></a>
 <p align="justify">
 APT stands for Advanced Packaging Tool, an open/source tool, designed to handle software installation and removal. 
 It is a command-line tool with no visual reference from a graphical interface.
@@ -179,7 +178,7 @@ On the other side, Aptitude is close to API, but you have a graphical interface,
 API can be used for package up-gradation, installation, resolving dependencies, system up-gradation, and more. However, Aptitude is good to inclusion functionalities of apt-cache and apt-mark, having more functionality, including package search, setting package installation as automation or manual, and more refined actions on the packages.
 </p>
 
-## 2.6 SSH
+## 2.6 SSH <a name="ssh"></a>
 <p align="justify">
 SSH or Secure Shell is a network communication protocol that enables two computers to communicate (c.f http or hypertext transfer protocol, which is the protocol used to transfer hypertext such as web pages) and share data. An inherent feature of ssh is that the communication between the two computers is encrypted meaning that it is suitable for use on insecure networks.
 SSH is often used to "login" and perform operations on remote computers but it may also be used for transferring data.
@@ -191,7 +190,7 @@ SSH enables us to provide a service with encrypted access for the widest range o
 
 </p>
 
-## 2.7 UFW with SSH
+## 2.7 UFW with SSH <a name="ufwwithssh"></a>
 <p align="justify">
 UFW stands for Uncomplicated Firewall. It is a command-line interface firewall configuration tool used in Linux systems to manage incoming and outgoing traffic. UFW is designed to make it easier for users to manage their firewall rules without requiring advanced knowledge of iptables
 A firewall is a security system that monitors and controls the incoming and outgoing network traffic based on predetermined security rules. It acts as a barrier between a trusted internal network and an untrusted external network, such as the internet, to protect against unauthorized access and malicious attacks. Firewalls can be hardware devices, software programs, or a combination of both. They are a fundamental component of network security and help prevent data breaches, malware infections, and other cyber threats.
@@ -205,7 +204,7 @@ When using SSH to connect to a remote Linux system, the connection is typically 
 
 </p>
 
-## 2.8 Cron and Wall
+## 2.8 Cron and Wall <a name="cronandwall"></a>
 <p align="justify">
 Cron is a job scheduler. It allows users to schedule tasks or commands to run automatically at specified intervals. These scheduled tasks are known as "cron jobs". 
 Cron is often used to automate system maintenance tasks, such as backups or updates, and to perform periodic tasks like sending emails or generating reports. 
@@ -222,7 +221,7 @@ change script to */1 * * * * sleep 30s && script path – to run it every 30 sec
 </p>
 </p>
 
-## 2.9 Sudo
+## 2.9 Sudo <a name="sudo"></a>
 <p align="justify">
 Sudo or "superuser do" is a command-line utility that allows users to execute commands with the privileges of another user, typically the root user. It is often used to perform administrative tasks that require elevated privileges, such as installing software or modifying system settings.
 The use of sudo helps to prevent unauthorized access to the root account, which is a powerful account that can make system-wide changes. Instead of logging in as the root user, which can be dangerous and should be avoided whenever possible, users can use the sudo command to temporarily elevate their privileges and perform the necessary tasks.
@@ -233,7 +232,7 @@ The use of sudo helps to prevent unauthorized access to the root account, which 
 
 </p>
 
-## 2.10 Script
+## 2.10 Script <a name="script"></a>
 <p align="justify">
 A script is a program written in a scripting language that can be executed by an interpreter or a command-line interface. Scripts are typically used to automate tasks or perform repetitive actions, such as file manipulation, system administration, or data processing.
 Scripts can be executed manually from a command-line interface or scheduled to run automatically at specific intervals using tools such as cron. They can also be integrated with other programs or systems using APIs or other interfaces, making them versatile and powerful tools for automating tasks and improving productivity.
@@ -245,7 +244,7 @@ Scripts can be executed manually from a command-line interface or scheduled to r
 Scripts can be executed manually from a command-line interface or scheduled to run automatically at specific intervals using tools such as cron. They can also be integrated with other programs or systems using APIs or other interfaces, making them versatile and powerful tools for automating tasks and improving productivity.
 </p>
 
-## 2.11 Rocky or Debian
+## 2.11 Rocky or Debian <a name="rockyordebian"></a>
 <p align="justify">
 Rocky and Debian are high-quality Linux distributions, but they have different strengths and target audiences. Debian is stable and with a long history, while Rocky is a newer design for users who prefer a rolling release model and are familiar with the Red Hat/CentOS ecosystem.
 
@@ -255,7 +254,7 @@ Rocky and Debian are high-quality Linux distributions, but they have different s
 
 </p>
 
-## 2.12 TTY
+## 2.12 TTY <a name="tty"></a>
 <p align="justify">
 Teletype refers to a physical or virtual terminal device used to interact with the system.
 
@@ -265,16 +264,16 @@ Teletype refers to a physical or virtual terminal device used to interact with t
 
 </p>
 
-# 3. WALKTHROUGH 
+# 3. WALKTHROUGH <a name="walkthrough"></a>
 <p align="justify">
   </p>
   
-## 3.1 Downloading OS and VM
+## 3.1 Downloading OS and VM <a name="downloadingosandvm"></a>
 <p align="justify">
 First we have to download the OS, Debian. After that we have to download the Virtual Machine, VirtualBox.
 </p>
 
-## 3.2 Installing VM
+## 3.2 Installing VM <a name="installingvm"></a>
 <p align="justify">
 Click on New
 
@@ -302,7 +301,7 @@ Click on Start
 
 </p>
 
-## 3.3 Installing OS
+## 3.3 Installing OS <a name="installingos"></a>
 <p align="justify">
 Install > Enter
 
@@ -362,11 +361,11 @@ YES > Enter
 Continue
 </p>
 
-## 3.4 Configurating VM
+## 3.4 Configurating VM <a name="configuratingvm"></a>
 <p align="justify">
  </p> 
  
-### 3.4.1 sudo
+### 3.4.1 sudo <a name="X"></a>
 <p align="justify">
  
 `su -`
@@ -384,7 +383,7 @@ Continue
 `your_username  	ALL=(ALL) ALL`
 </p>
 
-### 3.4.2 GIT and VIM
+### 3.4.2 GIT and VIM <a name="X"></a>
 <p align="justify">
  
 `apt-get install git -y`
@@ -392,7 +391,7 @@ Continue
 `git --version`
 </p>
 
-### 3.4.3 SSH
+### 3.4.3 SSH <a name="task"></a>
 <p align="justify">
  
 `sudo apt install openssh-server`
@@ -412,7 +411,7 @@ Save and Exit Vim
 `sudo service ssh restart`
 </p>
 
-### 3.4.4 UFW
+### 3.4.4 UFW <a name="task"></a>
 <p align="justify">
  
 `apt-get install ufw`
@@ -428,7 +427,7 @@ Save and Exit Vim
 `sudo ufw status numbered`
 </p>
 
-## 3.5 Connecting to SSH
+## 3.5 Connecting to SSH <a name="connectingtossh"></a>
 <p align="justify">
 Exit VM
 
@@ -451,11 +450,11 @@ Open Terminal and type `ssh your_username@127.0.0.1 -p 4242 || In case of error 
 Exit
 </p>
 
-## 3.6 Continue Configurating VM
+## 3.6 Continue Configurating VM <a name="continueconfiguratingvm"></a>
 <p align="justify">
 </p>
 
-### 3.6.1 Password Policy
+### 3.6.1 Password Policy <a name="X"></a>
 
 `sudo apt-get install libpam-pwquality` (install Password Quality Checking Library)
 
@@ -475,7 +474,7 @@ Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
 
 `sudo reboot`
 
-### 3.6.2 Group
+### 3.6.2 Group <a name="X"></a>
 
 `sudo groupadd user42`
 
@@ -483,7 +482,7 @@ Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
 
 `getent group`
 
-### 3.6.3 User (Group)
+### 3.6.3 User (Group) <a name="X"></a>
 
 `cut -d: -f1 /etc/passwd`
 
@@ -501,7 +500,7 @@ Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
 
 `chage -l your_new_username`
 
-### 3.6.4 sudo.log
+### 3.6.4 sudo.log <a name="X"></a>
 
 `cd ~/../`
 `cd var/log`
@@ -509,7 +508,7 @@ Change that part to `PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
 `cd sudo && touch sudo.log`
 `cd ~/../`
 
-#### 3.6.4.1 Configuring Sudoers Group
+#### 3.6.4.1 Configuring Sudoers Group <a name="X"></a>
 
 `sudo nano /etc/sudoers`
 
@@ -531,7 +530,7 @@ Defaults	log_input, log_output
 
 Defaults	requiretty
 ```
-### 3.6.5 Cron
+### 3.6.5 Cron <a name="X"></a>
 
 `apt-get install -y net-tools`
 
@@ -541,7 +540,7 @@ Defaults	requiretty
 
 `chmod 777 monitoring.sh`
 
-#### 3.6.5.1 Script
+#### 3.6.5.1 Script <a name="X"></a>
 
 ```
 #!/bin/bash
@@ -629,7 +628,7 @@ ip=$(hostname -I) gets the IP address of the system and stores it in the $ip var
  
  `*/10 * * * * /usr/local/bin/monitoring.sh`
  
-## 3.7 Signature.txt
+## 3.7 Signature.txt <a name="signature"></a>
 
 <p align="justify">
 Turn off VM
@@ -646,7 +645,7 @@ Submit the signature.txt.
 </p>
 </p>
   
-# 4 COMMANDS
+# 4 COMMANDS <a name="commands"></a>
 <p align="justify">
  
 `sudo ufw status`
