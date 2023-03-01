@@ -2,14 +2,14 @@
 
 ***
 
-1. [TASK](#task)
-	- 1.1. [Introduction](#introduction)
-	- 1.2. [Mandatory](#mandatory)
-	- 1.3. [Bonus](#bonus)
-2. [PROJECT CONCEPT](#projectconcept)
-	- 2.1. [Virtual Machine](#virtualmachine)
-	- 2.2. [How VM work](#howvmwork)
-	- 2.3. [LVM](#lvm)
+1. [TASK](#task) ✅
+	- 1.1. [Introduction](#introduction) ✅
+	- 1.2. [Mandatory](#mandatory) ✅
+	- 1.3. [Bonus](#bonus) ✅
+2. [PROJECT CONCEPT](#projectconcept) ✅
+	- 2.1. [Virtual Machine](#virtualmachine) ✅
+	- 2.2. [How VM work](#howvmwork) ✅
+	- 2.3. [LVM](#lvm) ✅
 	- 2.4. [AppArmor](#apparmor)
 	- 2.5. [Apt or Aptitude](#aptoraptitude)
 	- 2.6. [SSH](#ssh)
@@ -138,13 +138,16 @@ To be more clear one of the strongest points of VM is it is partitioned from the
 </p>
 
 ## 2.3 LVM <a name="lvm"></a>
+
 <p align="justify">
 LVM is a form of storage virtualization that offers system administrators a more flexible approach to managing disk storage, this tool gives you the power to allocate disks, create, resize, delete and mirror your HD.
+</p>
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/101360239/216986265-8c0e0ff9-79ca-40e5-80c7-3a08c91683b7.png" width="600" height="300">
 </p>
 
+<p align="justify">
 But first, we need to understand 3 concepts in LVM: Volume Groups, Physical Volumes and Logical Volumes.
 Volume Group is a named collection of physical and logical volumes, systems only need one Volume Group to contain the physical and logical volumes. 
 Physical Volumes are the disks; block devices that provide the space to store logical volumes. 
