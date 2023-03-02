@@ -314,7 +314,9 @@ Teletype refers to a physical or virtual terminal device used to interact with t
   
 ## 3.1 Downloading OS and VM <a name="downloadingosandvm"></a>
 <p align="justify">
+
 First we have to download the OS, [Debian](https://www.debian.org/download). After that we have to download the Virtual Machine, [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+
 </p>
 
 ## 3.2 Installing VM <a name="installingvm"></a>
@@ -353,13 +355,13 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 - Choose the keyboard > Enter
 
-- Create a hostname <strong>(loguin42)</strong> > Continue
+- Create a hostname <strong>(rbotasse42)</strong> > Continue
 
 - Ignore the Domain name > Continue
 
 - Create a hostname password > Continue
 
-- Create a new user <strong>(rbotasse42)</strong>> Continue
+- Create a new user <strong>(rbotasse)</strong>> Continue
 
 - Create a new user password > Continue
 
@@ -413,11 +415,11 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 `apt install sudo`
 
-`usermod -aG sudo your_username (getent group sudo)`
+`usermod -aG sudo rbotasse (getent group sudo)`
 
 `sudo visudo`
 
-`your_username  	ALL=(ALL) ALL`
+`rbotasse  	ALL=(ALL) ALL`
 
 ### 3.4.2 GIT and VIM <a name="gitandvim3"></a>
  
@@ -465,7 +467,7 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 - Click on VM Settings
 
-- Click on Network > Adaoter 1 > Advance > Prt Forwarding
+- Click on Network > Adaoter 1 > Advance > Port Forwarding
 
 - Change the Host Port and Guest Port to <strong>4242</strong>
 
@@ -477,11 +479,11 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 - Open Terminal and type:
 
-`ssh your_username@127.0.0.1 -p 4242`
+`ssh rbotasse@127.0.0.1 -p 4242`
 
 - In case of error:
 
-`rm ~/.ssh/known_hosts` > `ssh your_username@127.0.0.1 -p 4242` 
+`rm ~/.ssh/known_hosts` > `ssh rbotasse@127.0.0.1 -p 4242` 
 
 - Exit
 
@@ -513,7 +515,7 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 - Change that part to 
 
-`PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7`
+`PASS_MAX_DAYS 30 PASS_MIN_DAYS 2 PASS_WARN_AGE 7`
 
 `sudo reboot`
 
@@ -531,9 +533,9 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 `sudo adduser new_username`
 
-`sudo usermod -aG user42 your_username`
+`sudo usermod -aG user42 new_username`
 
-`sudo usermod -aG evaluating your_new_username`
+`sudo usermod -aG evaluating new_username`
 
 `getent group user42`
 
@@ -541,7 +543,7 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 `groups`
 
-`chage -l your_new_username`
+`chage -l new_username`
 
 ### 3.6.4 sudo.log <a name="sudolog"></a>
 
@@ -568,7 +570,7 @@ Defaults	mail_badpass
 
 Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin"
 
-Defaults	badpass_message="Password is wrong, please try again!"
+Defaults	badpass_message="Password is wrong"
 
 Defaults	passwd_tries=3
 
