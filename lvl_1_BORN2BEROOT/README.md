@@ -814,3 +814,29 @@ The script uses various commands to collect system information and stores the ou
 `ssh your_user_id@127.0.0.1 -p 4242`
 
 ***
+
+CRON
+cd /usr/local/bin – to show monitoring.sh
+sudo crontab -u root -e – to edit the cron job
+change script to */1 * * * * sleep 30s && script path – to run it every 30 seconds, delete the line to stop the job from running.
+
+
+UFW, Group, Host, lsblk and SSH
+sudo ufw status
+sudo systemctl status ssh
+getent group sudo
+getent group user42
+sudo adduser new username
+sudo groupadd groupname
+sudo usermod -aG groupname username
+sudo chage -l username - check password expire rules
+hostnamectl
+hostnamectl set-hostname new_hostname - to change the current hostname
+Restart your Virtual Machine.
+sudo nano /etc/hosts - change current hostname to new hostname
+lsblk to display the partitions
+dpkg -l | grep sudo – to show that sudo is installed
+sudo ufw status numbered
+sudo ufw allow port-id
+sudo ufw delete rule number
+ssh your_user_id@127.0.0.1 -p 4242 - do this in terminal to show that SSH to port 4242 is working
