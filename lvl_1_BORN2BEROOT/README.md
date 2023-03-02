@@ -25,7 +25,7 @@
 	- 3.3. [Installing OS](#installingos) ⏺️
 	- 3.4. [Configurating VM](#configuratingvm) ✅
 		- 3.4.1 [sudo](#sudo3) ✅
-		- 3.4.2 [GIT and VIM](#gitandvim3) ✅
+		- 3.4.2 DELETADO
 		- 3.4.3 [SSH](#ssh3) ✅
 		- 3.4.4 [UFW](#ufw3) ✅
 	- 3.5. [Connecting to SSH](#connectingtossh) ✅
@@ -407,41 +407,63 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
  
 ### 3.4.1 sudo <a name="sudo3"></a>
  
+- Open as root:
+
 `su -`
+
+- Source list is up-to-date
 
 `apt-get update -y`
 
+- Install packages
+
 `apt-get upgrade -y`
 
-`apt install sudo`
+- Install sudo
 
-`usermod -aG sudo rbotasse (getent group sudo)`
+`apt-get install sudo`
+
+- Add user to sudo
+
+`usermod -aG sudo rbotasse42`
+
+- Check sudo group
+
+`getent group sudo`
+
+- Open sudo for change the privileges
 
 `sudo visudo`
 
-`rbotasse  	ALL=(ALL) ALL`
+- Username 1 ALL rule applies to all hosts | 2 ALL user can run commands as all users | 3 user can run commands as all groups | 4 ALL rules apply to commands
 
-### 3.4.2 GIT and VIM <a name="gitandvim3"></a>
- 
-`apt-get install git -y`
-
-`git --version`
+`rbotasse42  	ALL=(ALL:ALL) ALL`
 
 ### 3.4.3 SSH <a name="ssh3"></a>
  
+ - Install ssh
+ 
 `sudo apt install openssh-server`
+
+- Check the status
 
 `sudo systemctl status ssh`
 
-`sudo vim /etc/ssh/sshd_config`
+- Open the configuration file
 
-- Find the line #Port22
+`sudo nano /etc/ssh/sshd_config`
 
-- Change to Port 4242 without the #
+- Find the line `#Port22`
 
-- Save and Exit Vim
+- Change to `Port 4242` without the #
+
+- Save and Exit
+
+- Check the SSH Port
 
 `sudo grep Port /etc/ssh/sshd_config`
+
+- Restart SSH
 
 `sudo service ssh restart`
 
@@ -453,11 +475,17 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 `sudo ufw status numbered`
 
+- To allow incoming SSH connection (and the default SSH port)
+
 `sudo ufw allow ssh`
+
+- To allow Port 4242
 
 `sudo ufw allow 4242`
 
 `sudo ufw status numbered`
+
+?????????DENY or DELETE PORT 22???????????
 
 ## 3.5 Connecting to SSH <a name="connectingtossh"></a>
 
@@ -467,9 +495,9 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 - Click on VM Settings
 
-- Click on Network > Adaoter 1 > Advance > Port Forwarding
+- Click on Network > Adapter 1 > Advance > Port Forwarding
 
-- Change the Host Port and Guest Port to <strong>4242</strong>
+- Add Host Port and Guest Port to <strong>4242</strong>
 
 - Back VM
 
@@ -483,7 +511,7 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 - In case of error:
 
-`rm ~/.ssh/known_hosts` > `ssh rbotasse@127.0.0.1 -p 4242` 
+`rm ~/.ssh/known_hosts` > `ssh rbotasse42@127.0.0.1 -p 4242` 
 
 - Exit
 
@@ -491,23 +519,25 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 ### 3.6.1 Password Policy <a name="passwordpolicy"></a>
 
-- To install the password quality checking library:
+- To install the password quality checking library. This module provide some plug-in strength-checking for passwords:
 
 `sudo apt-get install libpam-pwquality`
 
-`sudo vim /etc/pam.d/common-password`
+`sudo nano /etc/pam.d/common-password`
 
 - Find this line:
 
 `password		requisite		pam_deny.so (or pam_pwquakity.so retry=3)`
 
-- Add this to the end of that line: 
+- Add this to the end of that line: (minlen = minimum password length, ucredit = maximum number of uppercase characters that will generate a credit, dcredit = maximum number of digits that will generate a credit, maxrepeat = the maximum number of times a single character may be repeated, reject_username, difok = the minimum number of characters that must be different from the old password
 
-`minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=77enforce_for_root`
+`minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root`
 
-- Save and Exit Vim
+- Save and Exit
 
-`sudo vim /etc/login.defs`
+- Password aging controls
+
+`sudo nano /etc/login.defs`
 
 - Find this part 
 
@@ -516,6 +546,8 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 - Change that part to 
 
 `PASS_MAX_DAYS 30 PASS_MIN_DAYS 2 PASS_WARN_AGE 7`
+
+- Reboot VM
 
 `sudo reboot`
 
@@ -529,31 +561,49 @@ First we have to download the OS, [Debian](https://www.debian.org/download). Aft
 
 ### 3.6.3 User (Group) <a name="user"></a>
 
-`cut -d: -f1 /etc/passwd`
+- Show all groups. Cut print a selected parts of line. -d = delimiter | -f = cut by fields 
+
+`cut -d: -f1 /etc/group`
+
+- Add new user
 
 `sudo adduser new_username`
 
-`sudo usermod -aG user42 new_username`
+- Add new user to a rbotasse42 group. usermod allows to modify a user login infrmation. -aG used to add existing user to a group.
+
+`sudo usermod -aG rbotasse42 new_username`
+
+- Create evaluating group
+
+ `sudo groupadd evaluating`
+ 
+ - Add new_username to evaluating group
 
 `sudo usermod -aG evaluating new_username`
+
+- Lis the users of a group
 
 `getent group user42`
 
 `getent group evaluating`
 
-`groups`
+`cut -d: -f1 /etc/group`
 
-`chage -l new_username`
+- Check new_username password status
+
+`sudo chage -l new_username`
 
 ### 3.6.4 sudo.log <a name="sudolog"></a>
 
 `cd ~/../`
 
-`cd var/log`
+`cd /var/log`
 
-`mkdir sudo`
+`sudo mkdir sudo`
 
-`cd sudo && touch sudo.log`
+`cd sudo``
+
+`sudo touch sudo.log`
 
 `cd ~/../`
 
@@ -583,7 +633,7 @@ Defaults	requiretty
 
 ### 3.6.5 Cron <a name="cron"></a>
 
-`apt-get install -y net-tools`
+`sudo apt-get install -y net-tools`
 
 `cd /usr/local/bin/`
 
@@ -686,13 +736,9 @@ The script uses various commands to collect system information and stores the ou
  
  `sudo visudo`
  
- - Under the `your_username ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh` write:
+ - Under the  "# Allow members of group sudo to execute any command" there is a `%sudo ALL=(ALL:ALL) ALL` . Add:
  
- `%sudo ALL=(ALL:ALL) ALL`
- 
- - It should look like this:
- 
- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ `your_username ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh`
  
 - exit and save
  
