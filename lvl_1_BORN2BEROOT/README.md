@@ -767,7 +767,6 @@ The script uses various commands to collect system information and stores the ou
 # 4 COMMANDS <a name="commands"></a>
 <p align="justify">
  
-`sudo ufw status`
 
 `sudo systemctl status ssh`
 
@@ -816,27 +815,87 @@ The script uses various commands to collect system information and stores the ou
 ***
 
 CRON
-cd /usr/local/bin – to show monitoring.sh
-sudo crontab -u root -e – to edit the cron job
-change script to */1 * * * * sleep 30s && script path – to run it every 30 seconds, delete the line to stop the job from running.
 
+- Show monitoring.sh:
 
-UFW, Group, Host, lsblk and SSH
-sudo ufw status
-sudo systemctl status ssh
-getent group sudo
-getent group user42
-sudo adduser new username
-sudo groupadd groupname
-sudo usermod -aG groupname username
-sudo chage -l username - check password expire rules
-hostnamectl
-hostnamectl set-hostname new_hostname - to change the current hostname
-Restart your Virtual Machine.
-sudo nano /etc/hosts - change current hostname to new hostname
-lsblk to display the partitions
-dpkg -l | grep sudo – to show that sudo is installed
-sudo ufw status numbered
-sudo ufw allow port-id
-sudo ufw delete rule number
-ssh your_user_id@127.0.0.1 -p 4242 - do this in terminal to show that SSH to port 4242 is working
+´cd /usr/local/bin´
+
+- Edit cron:
+
+´sudo crontab -u root -e´
+
+- Edit cron for 1 min:
+
+´*/1 * * * * sleep 30s´
+
+- UFW status:
+
+´sudo ufw status´
+
+- SSH status:
+
+´sudo systemctl status ssh´
+
+- Show sudo group:
+
+´getent group sudo´
+
+- Show user group:
+
+´getent group user42´
+
+- Add user:
+
+´sudo adduser new username´
+
+- Add group:
+
+´sudo groupadd groupname´
+
+- Add user to group:
+
+´sudo usermod -aG groupname username´
+
+- Check user password status:
+
+´sudo chage -l username´
+
+- Check host:
+
+´hostnamectl´
+
+- Change host:
+
+´hostnamectl set-hostname new_hostname´
+
+- Reboot:
+
+´sudo reboot´
+
+- Another way to change the hostname:
+
+´sudo nano /etc/hosts´
+
+- Display the partitions:
+
+´lsblk´
+
+- Check Sudo:
+
+´dpkg -l | grep sudo´
+
+- Display UFW ports:
+
+´sudo ufw status numbered´
+
+- Allow port 8080:
+
+´sudo ufw allow 8080´
+
+- Delete port 8080:
+
+´sudo ufw delete rule number´
+
+- Show SSH to port 4242
+
+´ssh your_user_id@127.0.0.1 -p 4242´
