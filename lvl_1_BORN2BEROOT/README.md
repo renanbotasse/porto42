@@ -818,84 +818,84 @@ CRON
 
 - Show monitoring.sh:
 
-´cd /usr/local/bin´
+`cd /usr/local/bin`
 
 - Edit cron:
 
-´sudo crontab -u root -e´
+`sudo crontab -u root -e`
 
 - Edit cron for 1 min:
 
-´*/1 * * * * sleep 30s´
+`*/1 * * * * sleep 30s`
 
 - UFW status:
 
-´sudo ufw status´
+`sudo ufw status`
 
 - SSH status:
 
-´sudo systemctl status ssh´
+`sudo systemctl status ssh`
 
 - Show sudo group:
 
-´getent group sudo´
+`getent group sudo`
 
 - Show user group:
 
-´getent group user42´
+`getent group user42`
 
 - Add user:
 
-´sudo adduser new username´
+`sudo adduser new username`
 
 - Add group:
 
-´sudo groupadd groupname´
+`sudo groupadd groupname`
 
 - Add user to group:
 
-´sudo usermod -aG groupname username´
+`sudo usermod -aG groupname username`
 
 - Check user password status:
 
-´sudo chage -l username´
+`sudo chage -l username`
 
 - Check host:
 
-´hostnamectl´
+`hostnamectl`
 
 - Change host:
 
-´hostnamectl set-hostname new_hostname´
+`hostnamectl set-hostname new_hostname`
 
 - Reboot:
 
-´sudo reboot´
+`sudo reboot`
 
 - Another way to change the hostname:
 
-´sudo nano /etc/hosts´
+`sudo nano /etc/hosts`
 
 - Display the partitions:
 
-´lsblk´
+`lsblk`
 
 - Check Sudo:
 
-´dpkg -l | grep sudo´
+`dpkg -l | grep sudo`
 
 - Display UFW ports:
 
-´sudo ufw status numbered´
+`sudo ufw status numbered`
 
 - Allow port 8080:
 
-´sudo ufw allow 8080´
+`sudo ufw allow 8080`
 
 - Delete port 8080:
 
-´sudo ufw delete rule number´
+`sudo ufw delete rule number`
 
 - Show SSH to port 4242
 
-´ssh your_user_id@127.0.0.1 -p 4242´
+`ssh your_user_id@127.0.0.1 -p 4242`
