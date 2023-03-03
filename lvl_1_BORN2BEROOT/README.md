@@ -766,55 +766,6 @@ The script uses various commands to collect system information and stores the ou
   
 # 4 COMMANDS <a name="commands"></a>
 <p align="justify">
- 
-
-`sudo systemctl status ssh`
-
-`getent group sudo`
-
-`getent group user42`
-
-`sudo adduser new username`
-
-`sudo groupadd groupname`
-
-`sudo usermod -aG groupname username`
-
-- check password expire rules:
-
-`sudo chage -l username`
-
-`hostnamectl`
-
-- to change the current hostname:
-
-`hostnamectl set-hostname new_hostname`
-
-- Restart your Virtual Machine.
-
-- Change current hostname to new hostname:
-
-`sudo nano /etc/hosts` 
-
-`lsblk to display the partitions`
-
-– To show that sudo is installed:
-
-`dpkg -l | grep sudo`
-
-`sudo ufw status numbered`
-
-`sudo ufw allow port-id`
-
-`sudo ufw delete rule number`
-
-- To show that SSH to port 4242 is working:
- 
-`ssh your_user_id@127.0.0.1 -p 4242`
-
-***
-
-CRON
 
 - Show monitoring.sh:
 
