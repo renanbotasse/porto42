@@ -748,7 +748,11 @@ The script uses various commands to collect system information and stores the ou
  
  `sudo crontab -u root -e`
  
- `*/10 * * * * /usr/local/bin/monitoring.sh`
+ ````
+ # m h dom mon dow command
+ */10 * * * * sleep $(who -b | awk -F: '{printf("\%d"), $2\%10}m && /usr/local/bin/monitoring.sh
+ #* * * * * /usr/local/bin/monitoring.sh
+ ````
  
 ## 3.7 Signature.txt <a name="signature"></a>
 
