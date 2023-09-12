@@ -1,5 +1,5 @@
 # 42 School
-
+<p align="justify">
 42 School is a global education initiative that offers a unique and innovative approach to learning technology. Rather than traditional classrooms and teachers, the students learn through peer-to-peer. This method helps the students to develop both computing and life skills, which is essential for becoming a professional in the tech industry.
 
 I'm a big believer in the power of sharing knowledge - it's something that we all should do as part of our basic obligation to society.
@@ -9,66 +9,23 @@ This repository is where I've stashed all the projects and information about the
 I hope that by sharing my work and experiences, I can help out other students or anyone else who's interested in coding.
 
 Thanks for checking out my repository, and I hope you find what you're looking for.
-
-Remember, sharing knowledge is something we all gotta do!
-
-<br>
-
-***
-
-<br>
-
-## Piscine
-<p align="justify">
-To be admitted to 42, I had to go through a highly competitive selection process. The final stage of the selection process is called the "Piscine," which is a 26-day C programming bootcamp that challenges my skills to the max.
-</p>
-<p align="justify">
-During the C Piscine, I've been learning both hard and soft skills. Include C programming, where I work with variables, pointers, memory allocation, macros, and libraries. I've also learned shell commands and how to use Git to submit my projects.
 </p>
 
-## COMMON CORE 00
-### [0 - Libft](https://github.com/renanbotasse/porto42/tree/main/lvl_0_LIBFT)
+## [Piscine](https://github.com/renanbotasse/porto42/tree/main/piscine42)
+<p align="justify">
+Here, you can find all the subjects and my answers. I won't claim that every exercise is correct; you must assess them yourself. However, there is still a clear path to follow for the program.
+</p>
 
-The task is to create a custom C standard library that uses the same function prototypes as the original. The new library will include commonly used functions, such as strlen, strlcpy, strlcat, strncmp, atoi, isalpha, isprint, isdigit, isalnum, toupper, tolower, memset, bzero, memcpy, memchr, memcmp, strnstr, strchr, strrchr, memmove, isascii, calloc, strdup, substr, strjoin, strtrim, split, itoa, strmapi, striteri, putchar_fd, putstr_fd, putendl_fd, and putnbr_fd.
 
-<br>
+## [Common Core](https://github.com/renanbotasse/porto42/tree/main/commonCore42)
+<p align="justify">
+After successfully completing the Piscine, you'll be ready to dive into the Common Core, which serves as the core curriculum at 42. In this phase, you'll tackle significantly more intricate projects, which encompass: creating libraries, working with virtual machines, mastering terminal commands, developing a small 2D game using MiniLibx, implementing a shell, delving into networks and subnet masks, crafting a 3D 'game' with MiniLibx, building a web server from scratch in C++, getting acquainted with Docker and containerization, configuring a LEMP stack with Wordpress, replicating pipe functionality, solving the Philosopher's Dinner problem in C, and exploring threads, mutexes, processes, semaphores, and Inter-Process Communication (IPC). Furthermore, you'll receive an introduction to C++, including memory management, object-oriented programming (OOP), input/output and file streams, operator overloading, as well as templates/generics and containers.
+</p>
+<div align="center">
+  <img src="https://github.com/renanbotasse/porto42/assets/101360239/6873aeca-6c0d-49e3-b2df-869e622c6e3a" alt="commonCoreImg" />
+</div>
+<p align="justify">
+When I joined 42, I was living in the Porto region. However, after the first few months of the Common Core, I had to move to a city more than 250 kilometres away from the 42 Campus. The trips took about 3 hours each way, meaning I had to wake up at 4:30 in the morning and wouldn't return until around 1:30 the next day. Additionally, the costs of these trips became hard to handle, making it impossible for me to continue in the program.
 
-## COMMON CORE 01
-### PrintF
-FT_PRINTF is a C function that mimics printf(). It handles conversions for characters, strings, pointers, integers, and unsigned integers. The external functions it uses are va_start, va_arg, va_copy, malloc, free, write, and va_end. FT_PRINTF has a Makefile that creates the final executable libftprintf.a. It also has a header file ft_printf.h which declares function prototypes for the print conversions. The main function is ft_printf() which initializes a va_list variable and loops through the format string checking for the character '%' for a conversion specifier. Then it calls the corresponding function from the FT_PRINT conversions to handle the conversion.
-
-### Get Next line
-The get_next_line() function extracts a line from a file descriptor using helper functions like ft_read_and_save(), ft_gl(), and ft_holder(). Other helper functions like ft_strlen(), ft_strchr(), and ft_strjoin() are included.
-<br>
-
-### Born2BeRoot
-To complete the born2beroot project you need to follow the step-by-step instructions in the project's guide to configure and secure a virtual machine running a Debian-based operating system. This project teaches about Linux administration and system security. It requires the use of various tools and techniques to implement security measures, such as firewall configuration and user management.
-<br>
-
-## COMMON CORE 02
-
-### So Long
-
-### MiniTalk
-
-### Push Swap
-
-## COMMON CORE 03
-
-### MiniShell
-
-### Philosophers
-
-## COMMON CORE 04
-
-### Cub3D
-
-### CPP Modules
-
-## COMMON CORE 05
-
-### Inception
-
-### Webserv
-
-### Ft IRC
+However, I'm not the type of person who easily gives up and abandons their goals. I decided to research and complete all the projects of the Common Core on my own. While my solutions were not validated by the 42 computers, they may still be helpful to other students who are studying the same material.
+</p>
