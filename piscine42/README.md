@@ -6,5 +6,5 @@
 To be admitted to 42, I had to go through a highly competitive selection process. The final stage of the selection process is called the "C Piscine," which is a 26-day C programming bootcamp that challenges my skills to the max.
 </p>
 <p align="justify">
-During the C Piscine, I've been learning both hard and soft skills. Include C programming, where I work with variables, pointers, memory allocation, macros, and libraries. I've also learned shell commands and how to use Git to submit my projects.
+During the C Piscine, I've been learning both hard and soft skills. Includes C programming, where I work with variables, pointers, memory allocation, macros, and libraries. I've also learned shell commands and how to use Git to submit my projects.
 </p>
